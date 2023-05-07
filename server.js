@@ -1,6 +1,8 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import sequelize from './DBConnect.js'
+import cors from 'cors'
+
 import userRouter from './routes/users.js'
 
 dotenv.config()
@@ -9,6 +11,7 @@ const PORT = process.env.PORT || 5656
 
 const app = express()
 
+app.use(cors())
 app.use(express.json())
 
 app.use('/api', userRouter)
