@@ -15,7 +15,7 @@ const UserController = {
     getUserById: async (req, res) => {
         const id = req.params.id
         try {
-            const user = await User.findByPk(id)
+            const user = await User.findOne({where: {id: id}})
             if (user) {
                 res.status(200).json(user)
             } else {
@@ -29,6 +29,11 @@ const UserController = {
     login: async (req, res) => {
         try {
             const { login, password } = req.body
+
+            if (!login || !password) {
+                return res.status(400).json({ message: 'Please fill in the required fields' })
+            }
+
             const user = await User.findOne({ where: { login }})
             if (!login) {
                 return res.status(404).json({ message: 'User not found' })
@@ -47,8 +52,9 @@ const UserController = {
             )
 
             res.status(200).json({
-                token,
-                user,
+                id: user.id,
+                login: user.login,
+                token: token,
                 message: 'Authorization successful'
             })
         } catch (error) {
@@ -71,7 +77,11 @@ const UserController = {
 
             res.status(200).json({
                 token,
-                user
+                id: user.id,
+                login: user.login,
+                lastName: user.lastName,
+                firstName: user.firstName,
+                role: user.role,
             })
         } catch (error) {
             console.error(error)
@@ -79,7 +89,26 @@ const UserController = {
         }
     },
     createUser: async (req, res) => {
-        const { login, password, email } = req.body
+        const {
+            login,
+            password,
+            email,
+            role,
+            firstName,
+            middleName,
+            lastName,
+            nickName,
+            job,
+            city,
+            tel,
+            telegramLink,
+            facebookLink,
+            instagramLink,
+            twitterLink,
+            descUser,
+            avatarUrl,
+            accessRights
+        } = req.body
         try {
             const isUsedLogin = await User.findOne({ where: { login } })
             const isUsedEmail = await User.findOne({ where: { email }})
@@ -98,7 +127,22 @@ const UserController = {
             const user = await User.create({ 
                 login,
                 password: hash,
-                email
+                email,
+                role,
+                firstName,
+                middleName,
+                lastName,
+                nickName,
+                job,
+                city,
+                tel,
+                telegramLink,
+                facebookLink,
+                instagramLink,
+                twitterLink,
+                descUser,
+                avatarUrl,
+                accessRights
             })
             res.status(201).json({
                 user,
@@ -111,13 +155,49 @@ const UserController = {
     },
     updateUser: async (req, res) => {
         const id = req.params.id
-        const { password, email } = req.body
+        const {
+            password,
+            email,
+            role,
+            firstName,
+            middleName,
+            lastName,
+            nickName,
+            job,
+            city,
+            tel,
+            telegramLink,
+            facebookLink,
+            instagramLink,
+            twitterLink,
+            descUser,
+            avatarUrl,
+            accessRights
+        } = req.body
         try {
             const salt = bcrypt.genSaltSync(10)
             const hash = bcrypt.hashSync(password, salt)
 
             const result = await User.update(
-                { password: hash, email },
+                {
+                    password: hash,
+                    email,
+                    role,
+                    firstName,
+                    middleName,
+                    lastName,
+                    nickName,
+                    job,
+                    city,
+                    tel,
+                    telegramLink,
+                    facebookLink,
+                    instagramLink,
+                    twitterLink,
+                    descUser,
+                    avatarUrl,
+                    accessRights
+                },
                 { where: { id }}
             )
             if (result[0]) {

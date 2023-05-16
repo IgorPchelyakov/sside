@@ -23,6 +23,66 @@ const User = sequelize.define('User', {
         validate: {
             isEmail: true
         }
+    },
+    role: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    firstName: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    middleName: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    lastName: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    nickName: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    job: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    city: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    tel: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    telegramLink: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    facebookLink: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    instagramLink: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    twitterLink: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    descUser: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    avatarUrl: {
+        type: DataTypes.STRING,
+        defaultValue: 'https://thumbs.dreamstime.com/b/аватар-мода-босс-значок-мужской-одежды-креативный-дизайн-элементов-из-168197081.jpg'
+    },
+    accessRights: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false
     }
 }, {
     sequelize,

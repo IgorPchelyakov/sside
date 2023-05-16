@@ -1,18 +1,26 @@
-import express from 'express'
+import express, { urlencoded } from 'express'
 import dotenv from 'dotenv'
 import sequelize from './DBConnect.js'
 import cors from 'cors'
+import cookieParser from 'cookie-parser'
+import logger from 'morgan'
+import path from 'path'
 
 import userRouter from './routes/users.js'
 
 dotenv.config()
 
 const PORT = process.env.PORT || 5656
+const __dirname = path.dirname(new URL(import.meta.url).pathname)
 
 const app = express()
 
-app.use(cors())
+app.use(logger('dev'))
 app.use(express.json())
+app.use(urlencoded({extended: false}))
+app.use(cookieParser())
+app.use(cors())
+app.use(express.static(path.join(__dirname, 'uploads')))
 
 app.use('/api', userRouter)
 
