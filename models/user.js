@@ -1,5 +1,8 @@
 import { DataTypes } from "sequelize"
 import sequelize from '../DBConnect.js'
+import Media from "./media.js"
+import Post from "./post.js"
+import Banner from "./banner.js"
 
 const User = sequelize.define('User', {
     id: {
@@ -82,6 +85,7 @@ const User = sequelize.define('User', {
     },
     accessRights: {
         type: DataTypes.BOOLEAN,
+        defaultValue: true,
         allowNull: false
     }
 }, {
@@ -90,5 +94,14 @@ const User = sequelize.define('User', {
     timestamps: true,
     underscored: true
 })
+
+User.hasMany(Media)
+Media.belongsTo(User)
+
+User.hasMany(Post)
+Post.belongsTo(User)
+
+User.hasMany(Banner)
+Banner.belongsTo(User)
 
 export default User

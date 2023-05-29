@@ -1,6 +1,7 @@
 import User from "../models/user.js"
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
+import fs from 'fs'
 
 const UserController = {
     getAllUsers: async (req, res) => {
@@ -80,6 +81,9 @@ const UserController = {
                 id: user.id,
                 login: user.login,
                 lastName: user.lastName,
+                middleName: user.middleName,
+                job: user.job,
+                avatarUrl: user.avatarUrl,
                 firstName: user.firstName,
                 role: user.role,
             })
@@ -106,12 +110,24 @@ const UserController = {
             instagramLink,
             twitterLink,
             descUser,
-            avatarUrl,
             accessRights
         } = req.body
+        const avatar = req.files.avatarFile
         try {
             const isUsedLogin = await User.findOne({ where: { login } })
             const isUsedEmail = await User.findOne({ where: { email }})
+            const lastUser = await User.findOne({
+                order: [['id', 'DESC']]
+            });
+
+            let nextUserId;
+
+            if (lastUser) {
+                const lastUserId = lastUser.id;
+                nextUserId = lastUserId + 1;
+              } else {
+                nextUserId = 1;
+              }
 
             if (isUsedLogin) {
                 return res.status(400).json({ message: 'This login is already in use'})
@@ -123,6 +139,13 @@ const UserController = {
 
             const salt = bcrypt.genSaltSync(10)
             const hash = bcrypt.hashSync(password, salt)
+
+            if (!fs.existsSync(`./uploads/users/${nextUserId}/avatars`)) {
+                fs.mkdirSync(`./uploads/users/${nextUserId}/avatars`, { recursive: true })
+            }
+            avatar.mv(`./uploads/users/${nextUserId}/avatars/${avatar.name}`)
+            const baseUrl = `http://localhost:4444/api`
+            const avatarName = baseUrl + `/uploads/users/${nextUserId}/avatars/${avatar.name}`
 
             const user = await User.create({ 
                 login,
@@ -141,7 +164,7 @@ const UserController = {
                 instagramLink,
                 twitterLink,
                 descUser,
-                avatarUrl,
+                avatarUrl: avatarName,
                 accessRights
             })
             res.status(201).json({
@@ -154,8 +177,8 @@ const UserController = {
         }
     },
     updateUser: async (req, res) => {
-        const id = req.params.id
         const {
+            id,
             password,
             email,
             role,
@@ -171,13 +194,20 @@ const UserController = {
             instagramLink,
             twitterLink,
             descUser,
-            avatarUrl,
             accessRights
         } = req.body
+        const avatar = req.files.avatarFile
         try {
             const salt = bcrypt.genSaltSync(10)
             const hash = bcrypt.hashSync(password, salt)
-
+            
+            if (!fs.existsSync(`./uploads/users/${id}/avatars`)) {
+                fs.mkdirSync(`./uploads/users/${id}/avatars`)
+            }
+            avatar.mv(`./uploads/users/${id}/avatars/${avatar.name}`)
+            const baseUrl = `http://localhost:4444/api`
+            const avatarName = baseUrl + `/uploads/users/${id}/avatars/${avatar.name}`
+            
             const result = await User.update(
                 {
                     password: hash,
@@ -195,10 +225,10 @@ const UserController = {
                     instagramLink,
                     twitterLink,
                     descUser,
-                    avatarUrl,
+                    avatarUrl: avatarName,
                     accessRights
                 },
-                { where: { id }}
+                { where: { id: id }}
             )
             if (result[0]) {
                 res.status(200).json({ message: 'User updated' })
