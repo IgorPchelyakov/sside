@@ -1,8 +1,32 @@
 import { DataTypes } from "sequelize"
 import sequelize from '../DBConnect.js'
 import Media from "./media.js"
-import Post from "./post.js"
+import NationalNews from "./nationalNews.js"
 import Banner from "./banner.js"
+import Kyiv from "./feeds/regionKyiv/kyiv.js"
+import Bilacerkva from "./feeds/regionKyiv/bilacerkva.js"
+import Berezan from "./feeds/regionKyiv/berezan.js"
+import Boryspil from "./feeds/regionKyiv/boryspil.js"
+import Boyarka from "./feeds/regionKyiv/boyarka.js"
+import Brovary from "./feeds/regionKyiv/brovary.js"
+import Bucha from "./feeds/regionKyiv/bucha.js"
+import Fastiv from "./feeds/regionKyiv/fastiv.js"
+import Irpin from "./feeds/regionKyiv/irpin.js"
+import Obukhiv from "./feeds/regionKyiv/obukhiv.js"
+import Pereyaslav from "./feeds/regionKyiv/pereyaslav.js"
+import Skvyra from "./feeds/regionKyiv/skvyra.js"
+import Slavutych from "./feeds/regionKyiv/slavutych.js"
+import Vasylkiv from "./feeds/regionKyiv/vasylkiv.js"
+import Vyshhorod from "./feeds/regionKyiv/vyshhorod.js"
+import Vyshneve from "./feeds/regionKyiv/vyshneve.js"
+import Yagotyn from "./feeds/regionKyiv/yagotyn.js"
+import Chornomorsk from "./feeds/regionOdesa/chornomorsk.js"
+import Izmail from "./feeds/regionOdesa/izmail.js"
+import Kiliya from "./feeds/regionOdesa/kiliya.js"
+import Odesa from "./feeds/regionOdesa/odesa.js"
+import Podilsk from "./feeds/regionOdesa/podilsk.js"
+import Youzhne from "./feeds/regionOdesa/youzhne.js"
+import BilgorodDnistrovsky from "./feeds/regionOdesa/bilgorod-dnistrovsky.js"
 
 const User = sequelize.define('User', {
     id: {
@@ -81,7 +105,6 @@ const User = sequelize.define('User', {
     },
     avatarUrl: {
         type: DataTypes.STRING,
-        defaultValue: 'https://thumbs.dreamstime.com/b/аватар-мода-босс-значок-мужской-одежды-креативный-дизайн-элементов-из-168197081.jpg'
     },
     accessRights: {
         type: DataTypes.BOOLEAN,
@@ -98,8 +121,59 @@ const User = sequelize.define('User', {
 User.hasMany(Media)
 Media.belongsTo(User)
 
-User.hasMany(Post)
-Post.belongsTo(User)
+User.hasMany(NationalNews)
+NationalNews.belongsTo(User)
+
+User.hasMany(Berezan)
+Berezan.belongsTo(User)
+User.hasMany(Bilacerkva)
+Bilacerkva.belongsTo(User)
+User.hasMany(Boryspil)
+Boryspil.belongsTo(User)
+User.hasMany(Boyarka)
+Boyarka.belongsTo(User)
+User.hasMany(Brovary)
+Brovary.belongsTo(User)
+User.hasMany(Bucha)
+Bucha.belongsTo(User)
+User.hasMany(Fastiv)
+Fastiv.belongsTo(User)
+User.hasMany(Irpin)
+Irpin.belongsTo(User)
+User.hasMany(Kyiv)
+Kyiv.belongsTo(User)
+User.hasMany(Obukhiv)
+Obukhiv.belongsTo(User)
+User.hasMany(Pereyaslav)
+Pereyaslav.belongsTo(User)
+User.hasMany(Skvyra)
+Skvyra.belongsTo(User)
+User.hasMany(Slavutych)
+Slavutych.belongsTo(User)
+User.hasMany(Vasylkiv)
+Vasylkiv.belongsTo(User)
+User.hasMany(Vyshhorod)
+Vyshhorod.belongsTo(User)
+User.hasMany(Vyshneve)
+Vyshneve.belongsTo(User)
+User.hasMany(Yagotyn)
+Yagotyn.belongsTo(User)
+
+User.hasMany(BilgorodDnistrovsky)
+BilgorodDnistrovsky.belongsTo(User)
+User.hasMany(Chornomorsk)
+Chornomorsk.belongsTo(User)
+User.hasMany(Izmail)
+Izmail.belongsTo(User)
+User.hasMany(Kiliya)
+Kiliya.belongsTo(User)
+User.hasMany(Odesa)
+Odesa.belongsTo(User)
+User.hasMany(Podilsk)
+Podilsk.belongsTo(User)
+User.hasMany(Youzhne)
+Youzhne.belongsTo(User)
+
 
 User.hasMany(Banner)
 Banner.belongsTo(User)

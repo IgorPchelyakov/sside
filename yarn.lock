@@ -577,6 +577,7 @@ __metadata:
     morgan: ^1.10.0
     multer: ^1.4.5-lts.1
     mysql2: ^3.2.4
+    nodemailer: ^6.9.3
     nodemon: ^2.0.22
     sequelize: ^6.31.1
     sequelize-cli: ^6.6.0
@@ -1734,6 +1735,13 @@ __metadata:
   bin:
     node-gyp: bin/node-gyp.js
   checksum: b860e9976fa645ca0789c69e25387401b4396b93c8375489b5151a6c55cf2640a3b6183c212b38625ef7c508994930b72198338e3d09b9d7ade5acc4aaf51ea7
+  languageName: node
+  linkType: hard
+
+"nodemailer@npm:^6.9.3":
+  version: 6.9.3
+  resolution: "nodemailer@npm:6.9.3"
+  checksum: 3bea8316652c0578515d9146d2f24660e4855807520153f061d39af76b440a4f61b4e70f10fed35f8f12f115f6aea1aeb483ea7ba0337c0e3e675f117c41c611
   languageName: node
   linkType: hard
 

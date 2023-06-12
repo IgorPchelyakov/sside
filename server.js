@@ -6,12 +6,15 @@ import cookieParser from 'cookie-parser'
 import logger from 'morgan'
 
 import userRouter from './routes/users.js'
-import postRouter from './routes/posts.js'
+import newsRouter from './routes/news.js'
 import mediaRouter from './routes/media.js'
 import bannerRouter from './routes/banners.js'
 import bodyParser from 'body-parser'
 import fileUpload from 'express-fileupload'
-import multer from 'multer'
+
+import regionKyivRouter from './routes/regionFeeds/regionKyiv.js'
+import regionOdesaRouter from './routes/regionFeeds/regionOdesa.js'
+import connectionRouter from './routes/connection.js'
 
 dotenv.config()
 
@@ -28,35 +31,12 @@ app.use(fileUpload())
 app.use('/api/uploads', express.static('uploads'))
 
 app.use('/api', userRouter)
-app.use('/api', postRouter)
+app.use('/api', newsRouter)
 app.use('/api', mediaRouter)
 app.use('/api', bannerRouter)
-
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      // Укажите путь к папке, в которую вы хотите сохранить файлы
-      cb(null, 'uploads/');
-    },
-    filename: function (req, file, cb) {
-      // Генерируйте уникальное имя файла
-      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-      // Получите расширение файла
-      const fileExtension = file.originalname.split('.').pop();
-      // Сохраните файл с уникальным именем и его расширением
-      cb(null, uniqueSuffix + '.' + fileExtension);
-    }
-  });
-  
-  // Создание экземпляра Multer с использованием настроек хранилища
-  const upload = multer({ storage: storage });
-  
-  // Маршрут для обработки загрузки файла
-  app.post('/upload-url', upload.single('avatarUrl'), (req, res) => {
-    // Здесь можно выполнить дополнительную обработку загруженного файла, например, сохранить его путь в базе данных
-  
-    // Отправить ответ клиенту
-    res.json({ message: 'Файл успешно загружен' });
-  });
+app.use('/api', regionKyivRouter)
+app.use('/api', regionOdesaRouter)
+app.use('/api', connectionRouter)
 
 const start = () => {
     try {

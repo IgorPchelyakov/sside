@@ -5,7 +5,7 @@ import { checkAuth } from '../middleware/checkAuth.js'
 const router = express.Router()
 
 router.get('/users', checkAuth, UserController.getAllUsers)
-router.get('/users/:id', checkAuth, UserController.getUserById)
+router.get('/users/:id', UserController.getUserById)
 router.get('/user/me', checkAuth, UserController.checkMe)
 router.post('/user/login', UserController.login)
 router.post('/users/add', checkAuth, UserController.createUser)

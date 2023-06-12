@@ -8,10 +8,20 @@ const sequelize = new Sequelize(
     process.env.DB_USER,
     process.env.DB_PASSWORD,
     {
-        'host': 'localhost',
-        'dialect': 'mysql',
-        'port': '8889'
-    }
+        host: 'localhost',
+        dialect: 'mysql',
+        port: '8889',
+        dialectOptions: {
+            dateStrings: true,
+            typeCast: function (field, next) {
+                if (field.type === 'DATETIME') {
+                    return field.string();
+                }
+                return next();
+            },
+        },
+        timezone: '+03:00',
+    },
 )
 
 export default sequelize

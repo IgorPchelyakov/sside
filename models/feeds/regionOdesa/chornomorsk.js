@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
-import sequelize from "../DBConnect.js";
+import sequelize from "../../../DBConnect.js";
 
-const Post = sequelize.define('Post', {
+const Chornomorsk = sequelize.define('Chornomorsk', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -13,7 +13,11 @@ const Post = sequelize.define('Post', {
         allowNull: false
     },
     feed: {
-        type: DataTypes.ARRAY(DataTypes.STRING),
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    url: {
+        type: DataTypes.STRING,
         allowNull: false,
     },
     postType: {
@@ -81,8 +85,8 @@ const Post = sequelize.define('Post', {
     }
 }, {
     sequelize,
-    modelName: 'post',
+    modelName: 'chornomorsk',
     underscored: true,
 })
 
-export default Post
+export default Chornomorsk
