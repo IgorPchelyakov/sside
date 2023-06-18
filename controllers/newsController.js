@@ -760,8 +760,15 @@ const NewsController = {
                 publishOnSocialMedia,
                 UserId
             } = postData
+            const existingPost = await NationalNews.findOne({ where: { title } });
+
+            if (existingPost) {
+            res.status(400).json({ message: 'Публікація з таким заголовком вже існує' });
+            return;
+            }
             const updatedFeed = feed.slice(1);
             const feedString = updatedFeed.length === 0 ? feed[0] : updatedFeed.join(', ');
+
             const url = transliteration.slugify(title);
             let post;
 
@@ -1054,6 +1061,8 @@ const NewsController = {
                         desc,
                         showDesc,
                         mainImage,
+                        mainImgDesc,
+                        mainImgAuthor,
                         imageSize,
                         content,
                         live,
@@ -1358,7 +1367,6 @@ const NewsController = {
         const {
             id,
             publishedAt,
-            feed,
             postType,
             block,
             section,
@@ -1377,65 +1385,1450 @@ const NewsController = {
             UserId,
         } = req.body
         try {
-            const updatedFeed = feed.slice(1);
-            const feedString = updatedFeed.length === 0 ? feed[0] : updatedFeed.join(', ');
             const url = transliteration.slugify(title);
-            let post;
 
-            switch (feedString) {
-                case 'Загальнонаціональна стрічка':
-                    post = await NationalNews.update({
-                        publishedAt,
-                        postType,
-                        block,
-                        section,
-                        feed: feedString,
-                        title,
-                        url,
-                        desc,
-                        showDesc,
-                        mainImage,
-                        mainImgDesc,
-                        mainImgAuthor,
-                        imageSize,
-                        content,
-                        live,
-                        showAuthorDesc,
-                        showAuthor,
-                        publishOnSocialMedia,
-                        UserId,
-                    }, {
-                        where: {id}
-                    });
-                    break;
-                case 'Київ':
-                    post = await Kyiv.update({
-                        publishedAt,
-                        postType,
-                        block,
-                        feed: feedString,
-                        section,
-                        title,
-                        url,
-                        desc,
-                        showDesc,
-                        mainImage,
-                        mainImgDesc,
-                        mainImgAuthor,
-                        imageSize,
-                        content,
-                        live,
-                        showAuthorDesc,
-                        showAuthor,
-                        publishOnSocialMedia,
-                        UserId,
-                    }, {
-                        where: {id}
-                    });
-                    break;
-                    default:
-                        return res.status(400).json({ message: 'Invalid feed' });
+            const post = await NationalNews.update(
+                {
+                    publishedAt,
+                    postType,
+                    block,
+                    section,
+                    title,
+                    url,
+                    desc,
+                    showDesc,
+                    mainImage,
+                    mainImgDesc,
+                    mainImgAuthor,
+                    imageSize,
+                    content,
+                    live,
+                    showAuthorDesc,
+                    showAuthor,
+                    publishOnSocialMedia,
+                    UserId,
+                },
+                {
+                    where: { id }
+                }
+            )
+
+            if (post[0]) {
+                res.status(200).json({ message: 'Post updated' })
+            } else {
+                res.status(404).json({ message: 'Post not found' })
             }
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Server error' })
+        }
+    },
+    updateBerezanNews: async (req, res) => {
+        const {
+            id,
+            publishedAt,
+            postType,
+            block,
+            section,
+            title,
+            desc,
+            showDesc,
+            mainImage,
+            mainImgDesc,
+            mainImgAuthor,
+            imageSize,
+            content,
+            live,
+            showAuthorDesc,
+            showAuthor,
+            publishOnSocialMedia,
+            UserId,
+        } = req.body
+        try {
+            const url = transliteration.slugify(title);
+            const post = await Berezan.update(
+                {
+                    publishedAt,
+                    postType,
+                    block,
+                    section,
+                    title,
+                    url,
+                    desc,
+                    showDesc,
+                    mainImage,
+                    mainImgDesc,
+                    mainImgAuthor,
+                    imageSize,
+                    content,
+                    live,
+                    showAuthorDesc,
+                    showAuthor,
+                    publishOnSocialMedia,
+                    UserId,
+                },
+                {
+                    where: { id }
+                }
+            )
+
+            if (post[0]) {
+                res.status(200).json({ message: 'Post updated' })
+            } else {
+                res.status(404).json({ message: 'Post not found' })
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Server error' })
+        }
+    },
+    updateBilacerkvaNews: async (req, res) => {
+        const {
+            id,
+            publishedAt,
+            postType,
+            block,
+            section,
+            title,
+            desc,
+            showDesc,
+            mainImage,
+            mainImgDesc,
+            mainImgAuthor,
+            imageSize,
+            content,
+            live,
+            showAuthorDesc,
+            showAuthor,
+            publishOnSocialMedia,
+            UserId,
+        } = req.body
+        try {
+            const url = transliteration.slugify(title);
+            const post = await Bilacerkva.update(
+                {
+                    publishedAt,
+                    postType,
+                    block,
+                    section,
+                    title,
+                    url,
+                    desc,
+                    showDesc,
+                    mainImage,
+                    mainImgDesc,
+                    mainImgAuthor,
+                    imageSize,
+                    content,
+                    live,
+                    showAuthorDesc,
+                    showAuthor,
+                    publishOnSocialMedia,
+                    UserId,
+                },
+                {
+                    where: { id }
+                }
+            )
+
+            if (post[0]) {
+                res.status(200).json({ message: 'Post updated' })
+            } else {
+                res.status(404).json({ message: 'Post not found' })
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Server error' })
+        }
+    },
+    updateBoryspilNews: async (req, res) => {
+        const {
+            id,
+            publishedAt,
+            postType,
+            block,
+            section,
+            title,
+            desc,
+            showDesc,
+            mainImage,
+            mainImgDesc,
+            mainImgAuthor,
+            imageSize,
+            content,
+            live,
+            showAuthorDesc,
+            showAuthor,
+            publishOnSocialMedia,
+            UserId,
+        } = req.body
+        try {
+            const url = transliteration.slugify(title);
+            const post = await Boryspil.update(
+                {
+                    publishedAt,
+                    postType,
+                    block,
+                    section,
+                    title,
+                    url,
+                    desc,
+                    showDesc,
+                    mainImage,
+                    mainImgDesc,
+                    mainImgAuthor,
+                    imageSize,
+                    content,
+                    live,
+                    showAuthorDesc,
+                    showAuthor,
+                    publishOnSocialMedia,
+                    UserId,
+                },
+                {
+                    where: { id }
+                }
+            )
+
+            if (post[0]) {
+                res.status(200).json({ message: 'Post updated' })
+            } else {
+                res.status(404).json({ message: 'Post not found' })
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Server error' })
+        }
+    },
+    updateBoyarkaNews: async (req, res) => {
+        const {
+            id,
+            publishedAt,
+            postType,
+            block,
+            section,
+            title,
+            desc,
+            showDesc,
+            mainImage,
+            mainImgDesc,
+            mainImgAuthor,
+            imageSize,
+            content,
+            live,
+            showAuthorDesc,
+            showAuthor,
+            publishOnSocialMedia,
+            UserId,
+        } = req.body
+        try {
+            const url = transliteration.slugify(title);
+            const post = await Boyarka.update(
+                {
+                    publishedAt,
+                    postType,
+                    block,
+                    section,
+                    title,
+                    url,
+                    desc,
+                    showDesc,
+                    mainImage,
+                    mainImgDesc,
+                    mainImgAuthor,
+                    imageSize,
+                    content,
+                    live,
+                    showAuthorDesc,
+                    showAuthor,
+                    publishOnSocialMedia,
+                    UserId,
+                },
+                {
+                    where: { id }
+                }
+            )
+
+            if (post[0]) {
+                res.status(200).json({ message: 'Post updated' })
+            } else {
+                res.status(404).json({ message: 'Post not found' })
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Server error' })
+        }
+    },
+    updateBrovaryNews: async (req, res) => {
+        const {
+            id,
+            publishedAt,
+            postType,
+            block,
+            section,
+            title,
+            desc,
+            showDesc,
+            mainImage,
+            mainImgDesc,
+            mainImgAuthor,
+            imageSize,
+            content,
+            live,
+            showAuthorDesc,
+            showAuthor,
+            publishOnSocialMedia,
+            UserId,
+        } = req.body
+        try {
+            const url = transliteration.slugify(title);
+            const post = await Brovary.update(
+                {
+                    publishedAt,
+                    postType,
+                    block,
+                    section,
+                    title,
+                    url,
+                    desc,
+                    showDesc,
+                    mainImage,
+                    mainImgDesc,
+                    mainImgAuthor,
+                    imageSize,
+                    content,
+                    live,
+                    showAuthorDesc,
+                    showAuthor,
+                    publishOnSocialMedia,
+                    UserId,
+                },
+                {
+                    where: { id }
+                }
+            )
+
+            if (post[0]) {
+                res.status(200).json({ message: 'Post updated' })
+            } else {
+                res.status(404).json({ message: 'Post not found' })
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Server error' })
+        }
+    },
+    updateBuchaNews: async (req, res) => {
+        const {
+            id,
+            publishedAt,
+            postType,
+            block,
+            section,
+            title,
+            desc,
+            showDesc,
+            mainImage,
+            mainImgDesc,
+            mainImgAuthor,
+            imageSize,
+            content,
+            live,
+            showAuthorDesc,
+            showAuthor,
+            publishOnSocialMedia,
+            UserId,
+        } = req.body
+        try {
+            const url = transliteration.slugify(title);
+            const post = await Bucha.update(
+                {
+                    publishedAt,
+                    postType,
+                    block,
+                    section,
+                    title,
+                    url,
+                    desc,
+                    showDesc,
+                    mainImage,
+                    mainImgDesc,
+                    mainImgAuthor,
+                    imageSize,
+                    content,
+                    live,
+                    showAuthorDesc,
+                    showAuthor,
+                    publishOnSocialMedia,
+                    UserId,
+                },
+                {
+                    where: { id }
+                }
+            )
+
+            if (post[0]) {
+                res.status(200).json({ message: 'Post updated' })
+            } else {
+                res.status(404).json({ message: 'Post not found' })
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Server error' })
+        }
+    },
+    updateFastivNews: async (req, res) => {
+        const {
+            id,
+            publishedAt,
+            postType,
+            block,
+            section,
+            title,
+            desc,
+            showDesc,
+            mainImage,
+            mainImgDesc,
+            mainImgAuthor,
+            imageSize,
+            content,
+            live,
+            showAuthorDesc,
+            showAuthor,
+            publishOnSocialMedia,
+            UserId,
+        } = req.body
+        try {
+            const url = transliteration.slugify(title);
+            const post = await Fastiv.update(
+                {
+                    publishedAt,
+                    postType,
+                    block,
+                    section,
+                    title,
+                    url,
+                    desc,
+                    showDesc,
+                    mainImage,
+                    mainImgDesc,
+                    mainImgAuthor,
+                    imageSize,
+                    content,
+                    live,
+                    showAuthorDesc,
+                    showAuthor,
+                    publishOnSocialMedia,
+                    UserId,
+                },
+                {
+                    where: { id }
+                }
+            )
+
+            if (post[0]) {
+                res.status(200).json({ message: 'Post updated' })
+            } else {
+                res.status(404).json({ message: 'Post not found' })
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Server error' })
+        }
+    },
+    updateIrpinNews: async (req, res) => {
+        const {
+            id,
+            publishedAt,
+            postType,
+            block,
+            section,
+            title,
+            desc,
+            showDesc,
+            mainImage,
+            mainImgDesc,
+            mainImgAuthor,
+            imageSize,
+            content,
+            live,
+            showAuthorDesc,
+            showAuthor,
+            publishOnSocialMedia,
+            UserId,
+        } = req.body
+        try {
+            const url = transliteration.slugify(title);
+            const post = await Irpin.update(
+                {
+                    publishedAt,
+                    postType,
+                    block,
+                    section,
+                    title,
+                    url,
+                    desc,
+                    showDesc,
+                    mainImage,
+                    mainImgDesc,
+                    mainImgAuthor,
+                    imageSize,
+                    content,
+                    live,
+                    showAuthorDesc,
+                    showAuthor,
+                    publishOnSocialMedia,
+                    UserId,
+                },
+                {
+                    where: { id }
+                }
+            )
+
+            if (post[0]) {
+                res.status(200).json({ message: 'Post updated' })
+            } else {
+                res.status(404).json({ message: 'Post not found' })
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Server error' })
+        }
+    },
+    updateKyivNews: async (req, res) => {
+        const {
+            id,
+            publishedAt,
+            postType,
+            block,
+            section,
+            title,
+            desc,
+            showDesc,
+            mainImage,
+            mainImgDesc,
+            mainImgAuthor,
+            imageSize,
+            content,
+            live,
+            showAuthorDesc,
+            showAuthor,
+            publishOnSocialMedia,
+            UserId,
+        } = req.body
+        try {
+            const url = transliteration.slugify(title);
+            const post = await Kyiv.update(
+                {
+                    publishedAt,
+                    postType,
+                    block,
+                    section,
+                    title,
+                    url,
+                    desc,
+                    showDesc,
+                    mainImage,
+                    mainImgDesc,
+                    mainImgAuthor,
+                    imageSize,
+                    content,
+                    live,
+                    showAuthorDesc,
+                    showAuthor,
+                    publishOnSocialMedia,
+                    UserId,
+                },
+                {
+                    where: { id }
+                }
+            )
+
+            if (post[0]) {
+                res.status(200).json({ message: 'Post updated' })
+            } else {
+                res.status(404).json({ message: 'Post not found' })
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Server error' })
+        }
+    },
+    updateObukhivNews: async (req, res) => {
+        const {
+            id,
+            publishedAt,
+            postType,
+            block,
+            section,
+            title,
+            desc,
+            showDesc,
+            mainImage,
+            mainImgDesc,
+            mainImgAuthor,
+            imageSize,
+            content,
+            live,
+            showAuthorDesc,
+            showAuthor,
+            publishOnSocialMedia,
+            UserId,
+        } = req.body
+        try {
+            const url = transliteration.slugify(title);
+            const post = await Obukhiv.update(
+                {
+                    publishedAt,
+                    postType,
+                    block,
+                    section,
+                    title,
+                    url,
+                    desc,
+                    showDesc,
+                    mainImage,
+                    mainImgDesc,
+                    mainImgAuthor,
+                    imageSize,
+                    content,
+                    live,
+                    showAuthorDesc,
+                    showAuthor,
+                    publishOnSocialMedia,
+                    UserId,
+                },
+                {
+                    where: { id }
+                }
+            )
+
+            if (post[0]) {
+                res.status(200).json({ message: 'Post updated' })
+            } else {
+                res.status(404).json({ message: 'Post not found' })
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Server error' })
+        }
+    },
+    updatePereyaslavNews: async (req, res) => {
+        const {
+            id,
+            publishedAt,
+            postType,
+            block,
+            section,
+            title,
+            desc,
+            showDesc,
+            mainImage,
+            mainImgDesc,
+            mainImgAuthor,
+            imageSize,
+            content,
+            live,
+            showAuthorDesc,
+            showAuthor,
+            publishOnSocialMedia,
+            UserId,
+        } = req.body
+        try {
+            const url = transliteration.slugify(title);
+            const post = await Pereyaslav.update(
+                {
+                    publishedAt,
+                    postType,
+                    block,
+                    section,
+                    title,
+                    url,
+                    desc,
+                    showDesc,
+                    mainImage,
+                    mainImgDesc,
+                    mainImgAuthor,
+                    imageSize,
+                    content,
+                    live,
+                    showAuthorDesc,
+                    showAuthor,
+                    publishOnSocialMedia,
+                    UserId,
+                },
+                {
+                    where: { id }
+                }
+            )
+
+            if (post[0]) {
+                res.status(200).json({ message: 'Post updated' })
+            } else {
+                res.status(404).json({ message: 'Post not found' })
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Server error' })
+        }
+    },
+    updateSkvyraNews: async (req, res) => {
+        const {
+            id,
+            publishedAt,
+            postType,
+            block,
+            section,
+            title,
+            desc,
+            showDesc,
+            mainImage,
+            mainImgDesc,
+            mainImgAuthor,
+            imageSize,
+            content,
+            live,
+            showAuthorDesc,
+            showAuthor,
+            publishOnSocialMedia,
+            UserId,
+        } = req.body
+        try {
+            const url = transliteration.slugify(title);
+            const post = await Skvyra.update(
+                {
+                    publishedAt,
+                    postType,
+                    block,
+                    section,
+                    title,
+                    url,
+                    desc,
+                    showDesc,
+                    mainImage,
+                    mainImgDesc,
+                    mainImgAuthor,
+                    imageSize,
+                    content,
+                    live,
+                    showAuthorDesc,
+                    showAuthor,
+                    publishOnSocialMedia,
+                    UserId,
+                },
+                {
+                    where: { id }
+                }
+            )
+
+            if (post[0]) {
+                res.status(200).json({ message: 'Post updated' })
+            } else {
+                res.status(404).json({ message: 'Post not found' })
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Server error' })
+        }
+    },
+    updateSlavutychNews: async (req, res) => {
+        const {
+            id,
+            publishedAt,
+            postType,
+            block,
+            section,
+            title,
+            desc,
+            showDesc,
+            mainImage,
+            mainImgDesc,
+            mainImgAuthor,
+            imageSize,
+            content,
+            live,
+            showAuthorDesc,
+            showAuthor,
+            publishOnSocialMedia,
+            UserId,
+        } = req.body
+        try {
+            const url = transliteration.slugify(title);
+            const post = await Slavutych.update(
+                {
+                    publishedAt,
+                    postType,
+                    block,
+                    section,
+                    title,
+                    url,
+                    desc,
+                    showDesc,
+                    mainImage,
+                    mainImgDesc,
+                    mainImgAuthor,
+                    imageSize,
+                    content,
+                    live,
+                    showAuthorDesc,
+                    showAuthor,
+                    publishOnSocialMedia,
+                    UserId,
+                },
+                {
+                    where: { id }
+                }
+            )
+
+            if (post[0]) {
+                res.status(200).json({ message: 'Post updated' })
+            } else {
+                res.status(404).json({ message: 'Post not found' })
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Server error' })
+        }
+    },
+    updateVasylkivNews: async (req, res) => {
+        const {
+            id,
+            publishedAt,
+            postType,
+            block,
+            section,
+            title,
+            desc,
+            showDesc,
+            mainImage,
+            mainImgDesc,
+            mainImgAuthor,
+            imageSize,
+            content,
+            live,
+            showAuthorDesc,
+            showAuthor,
+            publishOnSocialMedia,
+            UserId,
+        } = req.body
+        try {
+            const url = transliteration.slugify(title);
+            const post = await Vasylkiv.update(
+                {
+                    publishedAt,
+                    postType,
+                    block,
+                    section,
+                    title,
+                    url,
+                    desc,
+                    showDesc,
+                    mainImage,
+                    mainImgDesc,
+                    mainImgAuthor,
+                    imageSize,
+                    content,
+                    live,
+                    showAuthorDesc,
+                    showAuthor,
+                    publishOnSocialMedia,
+                    UserId,
+                },
+                {
+                    where: { id }
+                }
+            )
+
+            if (post[0]) {
+                res.status(200).json({ message: 'Post updated' })
+            } else {
+                res.status(404).json({ message: 'Post not found' })
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Server error' })
+        }
+    },
+    updateVyshhorodNews: async (req, res) => {
+        const {
+            id,
+            publishedAt,
+            postType,
+            block,
+            section,
+            title,
+            desc,
+            showDesc,
+            mainImage,
+            mainImgDesc,
+            mainImgAuthor,
+            imageSize,
+            content,
+            live,
+            showAuthorDesc,
+            showAuthor,
+            publishOnSocialMedia,
+            UserId,
+        } = req.body
+        try {
+            const url = transliteration.slugify(title);
+            const post = await Vyshhorod.update(
+                {
+                    publishedAt,
+                    postType,
+                    block,
+                    section,
+                    title,
+                    url,
+                    desc,
+                    showDesc,
+                    mainImage,
+                    mainImgDesc,
+                    mainImgAuthor,
+                    imageSize,
+                    content,
+                    live,
+                    showAuthorDesc,
+                    showAuthor,
+                    publishOnSocialMedia,
+                    UserId,
+                },
+                {
+                    where: { id }
+                }
+            )
+
+            if (post[0]) {
+                res.status(200).json({ message: 'Post updated' })
+            } else {
+                res.status(404).json({ message: 'Post not found' })
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Server error' })
+        }
+    },
+    updateVyshneveNews: async (req, res) => {
+        const {
+            id,
+            publishedAt,
+            postType,
+            block,
+            section,
+            title,
+            desc,
+            showDesc,
+            mainImage,
+            mainImgDesc,
+            mainImgAuthor,
+            imageSize,
+            content,
+            live,
+            showAuthorDesc,
+            showAuthor,
+            publishOnSocialMedia,
+            UserId,
+        } = req.body
+        try {
+            const url = transliteration.slugify(title);
+            const post = await Vyshneve.update(
+                {
+                    publishedAt,
+                    postType,
+                    block,
+                    section,
+                    title,
+                    url,
+                    desc,
+                    showDesc,
+                    mainImage,
+                    mainImgDesc,
+                    mainImgAuthor,
+                    imageSize,
+                    content,
+                    live,
+                    showAuthorDesc,
+                    showAuthor,
+                    publishOnSocialMedia,
+                    UserId,
+                },
+                {
+                    where: { id }
+                }
+            )
+
+            if (post[0]) {
+                res.status(200).json({ message: 'Post updated' })
+            } else {
+                res.status(404).json({ message: 'Post not found' })
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Server error' })
+        }
+    },
+    updateYagotynNews: async (req, res) => {
+        const {
+            id,
+            publishedAt,
+            postType,
+            block,
+            section,
+            title,
+            desc,
+            showDesc,
+            mainImage,
+            mainImgDesc,
+            mainImgAuthor,
+            imageSize,
+            content,
+            live,
+            showAuthorDesc,
+            showAuthor,
+            publishOnSocialMedia,
+            UserId,
+        } = req.body
+        try {
+            const url = transliteration.slugify(title);
+            const post = await Yagotyn.update(
+                {
+                    publishedAt,
+                    postType,
+                    block,
+                    section,
+                    title,
+                    url,
+                    desc,
+                    showDesc,
+                    mainImage,
+                    mainImgDesc,
+                    mainImgAuthor,
+                    imageSize,
+                    content,
+                    live,
+                    showAuthorDesc,
+                    showAuthor,
+                    publishOnSocialMedia,
+                    UserId,
+                },
+                {
+                    where: { id }
+                }
+            )
+
+            if (post[0]) {
+                res.status(200).json({ message: 'Post updated' })
+            } else {
+                res.status(404).json({ message: 'Post not found' })
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Server error' })
+        }
+    },
+    updateBilgorodDnistrovskyNews: async (req, res) => {
+        const {
+            id,
+            publishedAt,
+            postType,
+            block,
+            section,
+            title,
+            desc,
+            showDesc,
+            mainImage,
+            mainImgDesc,
+            mainImgAuthor,
+            imageSize,
+            content,
+            live,
+            showAuthorDesc,
+            showAuthor,
+            publishOnSocialMedia,
+            UserId,
+        } = req.body
+        try {
+            const url = transliteration.slugify(title);
+            const post = await BilgorodDnistrovsky.update(
+                {
+                    publishedAt,
+                    postType,
+                    block,
+                    section,
+                    title,
+                    url,
+                    desc,
+                    showDesc,
+                    mainImage,
+                    mainImgDesc,
+                    mainImgAuthor,
+                    imageSize,
+                    content,
+                    live,
+                    showAuthorDesc,
+                    showAuthor,
+                    publishOnSocialMedia,
+                    UserId,
+                },
+                {
+                    where: { id }
+                }
+            )
+
+            if (post[0]) {
+                res.status(200).json({ message: 'Post updated' })
+            } else {
+                res.status(404).json({ message: 'Post not found' })
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Server error' })
+        }
+    },
+    updateChornomorskNews: async (req, res) => {
+        const {
+            id,
+            publishedAt,
+            postType,
+            block,
+            section,
+            title,
+            desc,
+            showDesc,
+            mainImage,
+            mainImgDesc,
+            mainImgAuthor,
+            imageSize,
+            content,
+            live,
+            showAuthorDesc,
+            showAuthor,
+            publishOnSocialMedia,
+            UserId,
+        } = req.body
+        try {
+            const url = transliteration.slugify(title);
+            const post = await Chornomorsk.update(
+                {
+                    publishedAt,
+                    postType,
+                    block,
+                    section,
+                    title,
+                    url,
+                    desc,
+                    showDesc,
+                    mainImage,
+                    mainImgDesc,
+                    mainImgAuthor,
+                    imageSize,
+                    content,
+                    live,
+                    showAuthorDesc,
+                    showAuthor,
+                    publishOnSocialMedia,
+                    UserId,
+                },
+                {
+                    where: { id }
+                }
+            )
+
+            if (post[0]) {
+                res.status(200).json({ message: 'Post updated' })
+            } else {
+                res.status(404).json({ message: 'Post not found' })
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Server error' })
+        }
+    },
+    updateIzmailNews: async (req, res) => {
+        const {
+            id,
+            publishedAt,
+            postType,
+            block,
+            section,
+            title,
+            desc,
+            showDesc,
+            mainImage,
+            mainImgDesc,
+            mainImgAuthor,
+            imageSize,
+            content,
+            live,
+            showAuthorDesc,
+            showAuthor,
+            publishOnSocialMedia,
+            UserId,
+        } = req.body
+        try {
+            const url = transliteration.slugify(title);
+            const post = await Izmail.update(
+                {
+                    publishedAt,
+                    postType,
+                    block,
+                    section,
+                    title,
+                    url,
+                    desc,
+                    showDesc,
+                    mainImage,
+                    mainImgDesc,
+                    mainImgAuthor,
+                    imageSize,
+                    content,
+                    live,
+                    showAuthorDesc,
+                    showAuthor,
+                    publishOnSocialMedia,
+                    UserId,
+                },
+                {
+                    where: { id }
+                }
+            )
+
+            if (post[0]) {
+                res.status(200).json({ message: 'Post updated' })
+            } else {
+                res.status(404).json({ message: 'Post not found' })
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Server error' })
+        }
+    },
+    updateKiliyaNews: async (req, res) => {
+        const {
+            id,
+            publishedAt,
+            postType,
+            block,
+            section,
+            title,
+            desc,
+            showDesc,
+            mainImage,
+            mainImgDesc,
+            mainImgAuthor,
+            imageSize,
+            content,
+            live,
+            showAuthorDesc,
+            showAuthor,
+            publishOnSocialMedia,
+            UserId,
+        } = req.body
+        try {
+            const url = transliteration.slugify(title);
+            const post = await Kiliya.update(
+                {
+                    publishedAt,
+                    postType,
+                    block,
+                    section,
+                    title,
+                    url,
+                    desc,
+                    showDesc,
+                    mainImage,
+                    mainImgDesc,
+                    mainImgAuthor,
+                    imageSize,
+                    content,
+                    live,
+                    showAuthorDesc,
+                    showAuthor,
+                    publishOnSocialMedia,
+                    UserId,
+                },
+                {
+                    where: { id }
+                }
+            )
+
+            if (post[0]) {
+                res.status(200).json({ message: 'Post updated' })
+            } else {
+                res.status(404).json({ message: 'Post not found' })
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Server error' })
+        }
+    },
+    updateOdesaNews: async (req, res) => {
+        const {
+            id,
+            publishedAt,
+            postType,
+            block,
+            section,
+            title,
+            desc,
+            showDesc,
+            mainImage,
+            mainImgDesc,
+            mainImgAuthor,
+            imageSize,
+            content,
+            live,
+            showAuthorDesc,
+            showAuthor,
+            publishOnSocialMedia,
+            UserId,
+        } = req.body
+        try {
+            const url = transliteration.slugify(title);
+            const post = await Odesa.update(
+                {
+                    publishedAt,
+                    postType,
+                    block,
+                    section,
+                    title,
+                    url,
+                    desc,
+                    showDesc,
+                    mainImage,
+                    mainImgDesc,
+                    mainImgAuthor,
+                    imageSize,
+                    content,
+                    live,
+                    showAuthorDesc,
+                    showAuthor,
+                    publishOnSocialMedia,
+                    UserId,
+                },
+                {
+                    where: { id }
+                }
+            )
+
+            if (post[0]) {
+                res.status(200).json({ message: 'Post updated' })
+            } else {
+                res.status(404).json({ message: 'Post not found' })
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Server error' })
+        }
+    },
+    updatePodilskNews: async (req, res) => {
+        const {
+            id,
+            publishedAt,
+            postType,
+            block,
+            section,
+            title,
+            desc,
+            showDesc,
+            mainImage,
+            mainImgDesc,
+            mainImgAuthor,
+            imageSize,
+            content,
+            live,
+            showAuthorDesc,
+            showAuthor,
+            publishOnSocialMedia,
+            UserId,
+        } = req.body
+        try {
+            const url = transliteration.slugify(title);
+            const post = await Podilsk.update(
+                {
+                    publishedAt,
+                    postType,
+                    block,
+                    section,
+                    title,
+                    url,
+                    desc,
+                    showDesc,
+                    mainImage,
+                    mainImgDesc,
+                    mainImgAuthor,
+                    imageSize,
+                    content,
+                    live,
+                    showAuthorDesc,
+                    showAuthor,
+                    publishOnSocialMedia,
+                    UserId,
+                },
+                {
+                    where: { id }
+                }
+            )
+
+            if (post[0]) {
+                res.status(200).json({ message: 'Post updated' })
+            } else {
+                res.status(404).json({ message: 'Post not found' })
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Server error' })
+        }
+    },
+    updateYouzhneNews: async (req, res) => {
+        const {
+            id,
+            publishedAt,
+            postType,
+            block,
+            section,
+            title,
+            desc,
+            showDesc,
+            mainImage,
+            mainImgDesc,
+            mainImgAuthor,
+            imageSize,
+            content,
+            live,
+            showAuthorDesc,
+            showAuthor,
+            publishOnSocialMedia,
+            UserId,
+        } = req.body
+        try {
+            const url = transliteration.slugify(title);
+            const post = await Youzhne.update(
+                {
+                    publishedAt,
+                    postType,
+                    block,
+                    section,
+                    title,
+                    url,
+                    desc,
+                    showDesc,
+                    mainImage,
+                    mainImgDesc,
+                    mainImgAuthor,
+                    imageSize,
+                    content,
+                    live,
+                    showAuthorDesc,
+                    showAuthor,
+                    publishOnSocialMedia,
+                    UserId,
+                },
+                {
+                    where: { id }
+                }
+            )
+
             if (post[0]) {
                 res.status(200).json({ message: 'Post updated' })
             } else {
@@ -1450,6 +2843,366 @@ const NewsController = {
         const id = req.params.id
         try {
             const post = await NationalNews.destroy({ where: {id}})
+            if (post) {
+                res.status(200).json({ message: 'Post deleted' })
+            } else {
+                res.status(404).json({ message: 'Post not found'})                
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Server error' })
+        }
+    },
+    deleteBerezanNews: async (req, res) => {
+        const id = req.params.id
+        console.log(req.params.id);
+        try {
+            const post = await Berezan.destroy({ where: {id}})
+            if (post) {
+                res.status(200).json({ message: 'Post deleted' })
+            } else {
+                res.status(404).json({ message: 'Post not found'})                
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Server error' })
+        }
+    },
+    deleteBilacerkvaNews: async (req, res) => {
+        const id = req.params.id
+        console.log(req.params.id);
+        try {
+            const post = await Bilacerkva.destroy({ where: {id}})
+            if (post) {
+                res.status(200).json({ message: 'Post deleted' })
+            } else {
+                res.status(404).json({ message: 'Post not found'})                
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Server error' })
+        }
+    },
+    deleteBoryspilNews: async (req, res) => {
+        const id = req.params.id
+        console.log(req.params.id);
+        try {
+            const post = await Boryspil.destroy({ where: {id}})
+            if (post) {
+                res.status(200).json({ message: 'Post deleted' })
+            } else {
+                res.status(404).json({ message: 'Post not found'})                
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Server error' })
+        }
+    },
+    deleteBoyarkaNews: async (req, res) => {
+        const id = req.params.id
+        console.log(req.params.id);
+        try {
+            const post = await Boyarka.destroy({ where: {id}})
+            if (post) {
+                res.status(200).json({ message: 'Post deleted' })
+            } else {
+                res.status(404).json({ message: 'Post not found'})                
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Server error' })
+        }
+    },
+    deleteBrovaryNews: async (req, res) => {
+        const id = req.params.id
+        console.log(req.params.id);
+        try {
+            const post = await Brovary.destroy({ where: {id}})
+            if (post) {
+                res.status(200).json({ message: 'Post deleted' })
+            } else {
+                res.status(404).json({ message: 'Post not found'})                
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Server error' })
+        }
+    },
+    deleteBuchaNews: async (req, res) => {
+        const id = req.params.id
+        console.log(req.params.id);
+        try {
+            const post = await Bucha.destroy({ where: {id}})
+            if (post) {
+                res.status(200).json({ message: 'Post deleted' })
+            } else {
+                res.status(404).json({ message: 'Post not found'})                
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Server error' })
+        }
+    },
+    deleteFastivNews: async (req, res) => {
+        const id = req.params.id
+        console.log(req.params.id);
+        try {
+            const post = await Fastiv.destroy({ where: {id}})
+            if (post) {
+                res.status(200).json({ message: 'Post deleted' })
+            } else {
+                res.status(404).json({ message: 'Post not found'})                
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Server error' })
+        }
+    },
+    deleteIrpinNews: async (req, res) => {
+        const id = req.params.id
+        console.log(req.params.id);
+        try {
+            const post = await Irpin.destroy({ where: {id}})
+            if (post) {
+                res.status(200).json({ message: 'Post deleted' })
+            } else {
+                res.status(404).json({ message: 'Post not found'})                
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Server error' })
+        }
+    },
+    deleteKyivNews: async (req, res) => {
+        const id = req.params.id
+        console.log(req.params.id);
+        try {
+            const post = await Kyiv.destroy({ where: {id}})
+            if (post) {
+                res.status(200).json({ message: 'Post deleted' })
+            } else {
+                res.status(404).json({ message: 'Post not found'})                
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Server error' })
+        }
+    },
+    deleteObukhivNews: async (req, res) => {
+        const id = req.params.id
+        console.log(req.params.id);
+        try {
+            const post = await Obukhiv.destroy({ where: {id}})
+            if (post) {
+                res.status(200).json({ message: 'Post deleted' })
+            } else {
+                res.status(404).json({ message: 'Post not found'})                
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Server error' })
+        }
+    },
+    deletePereyaslavNews: async (req, res) => {
+        const id = req.params.id
+        console.log(req.params.id);
+        try {
+            const post = await Pereyaslav.destroy({ where: {id}})
+            if (post) {
+                res.status(200).json({ message: 'Post deleted' })
+            } else {
+                res.status(404).json({ message: 'Post not found'})                
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Server error' })
+        }
+    },
+    deleteSkvyraNews: async (req, res) => {
+        const id = req.params.id
+        console.log(req.params.id);
+        try {
+            const post = await Skvyra.destroy({ where: {id}})
+            if (post) {
+                res.status(200).json({ message: 'Post deleted' })
+            } else {
+                res.status(404).json({ message: 'Post not found'})                
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Server error' })
+        }
+    },
+    deleteSlavutychNews: async (req, res) => {
+        const id = req.params.id
+        console.log(req.params.id);
+        try {
+            const post = await Slavutych.destroy({ where: {id}})
+            if (post) {
+                res.status(200).json({ message: 'Post deleted' })
+            } else {
+                res.status(404).json({ message: 'Post not found'})                
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Server error' })
+        }
+    },
+    deleteVasylkivNews: async (req, res) => {
+        const id = req.params.id
+        console.log(req.params.id);
+        try {
+            const post = await Vasylkiv.destroy({ where: {id}})
+            if (post) {
+                res.status(200).json({ message: 'Post deleted' })
+            } else {
+                res.status(404).json({ message: 'Post not found'})                
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Server error' })
+        }
+    },
+    deleteVyshhorodNews: async (req, res) => {
+        const id = req.params.id
+        console.log(req.params.id);
+        try {
+            const post = await Vyshhorod.destroy({ where: {id}})
+            if (post) {
+                res.status(200).json({ message: 'Post deleted' })
+            } else {
+                res.status(404).json({ message: 'Post not found'})                
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Server error' })
+        }
+    },
+    deleteVyshneveNews: async (req, res) => {
+        const id = req.params.id
+        console.log(req.params.id);
+        try {
+            const post = await Vyshneve.destroy({ where: {id}})
+            if (post) {
+                res.status(200).json({ message: 'Post deleted' })
+            } else {
+                res.status(404).json({ message: 'Post not found'})                
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Server error' })
+        }
+    },
+    deleteYagotynNews: async (req, res) => {
+        const id = req.params.id
+        console.log(req.params.id);
+        try {
+            const post = await Yagotyn.destroy({ where: {id}})
+            if (post) {
+                res.status(200).json({ message: 'Post deleted' })
+            } else {
+                res.status(404).json({ message: 'Post not found'})                
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Server error' })
+        }
+    },
+    deleteBilgorodDnistrovskyNews: async (req, res) => {
+        const id = req.params.id
+        console.log(req.params.id);
+        try {
+            const post = await BilgorodDnistrovsky.destroy({ where: {id}})
+            if (post) {
+                res.status(200).json({ message: 'Post deleted' })
+            } else {
+                res.status(404).json({ message: 'Post not found'})                
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Server error' })
+        }
+    },
+    deleteChornomorskNews: async (req, res) => {
+        const id = req.params.id
+        console.log(req.params.id);
+        try {
+            const post = await Chornomorsk.destroy({ where: {id}})
+            if (post) {
+                res.status(200).json({ message: 'Post deleted' })
+            } else {
+                res.status(404).json({ message: 'Post not found'})                
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Server error' })
+        }
+    },
+    deleteIzmailNews: async (req, res) => {
+        const id = req.params.id
+        console.log(req.params.id);
+        try {
+            const post = await Izmail.destroy({ where: {id}})
+            if (post) {
+                res.status(200).json({ message: 'Post deleted' })
+            } else {
+                res.status(404).json({ message: 'Post not found'})                
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Server error' })
+        }
+    },
+    deleteKiliyaNews: async (req, res) => {
+        const id = req.params.id
+        console.log(req.params.id);
+        try {
+            const post = await Kiliya.destroy({ where: {id}})
+            if (post) {
+                res.status(200).json({ message: 'Post deleted' })
+            } else {
+                res.status(404).json({ message: 'Post not found'})                
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Server error' })
+        }
+    },
+    deleteOdesaNews: async (req, res) => {
+        const id = req.params.id
+        console.log(req.params.id);
+        try {
+            const post = await Odesa.destroy({ where: {id}})
+            if (post) {
+                res.status(200).json({ message: 'Post deleted' })
+            } else {
+                res.status(404).json({ message: 'Post not found'})                
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Server error' })
+        }
+    },
+    deletePodilskNews: async (req, res) => {
+        const id = req.params.id
+        console.log(req.params.id);
+        try {
+            const post = await Podilsk.destroy({ where: {id}})
+            if (post) {
+                res.status(200).json({ message: 'Post deleted' })
+            } else {
+                res.status(404).json({ message: 'Post not found'})                
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Server error' })
+        }
+    },
+    deleteYouzhneNews: async (req, res) => {
+        const id = req.params.id
+        console.log(req.params.id);
+        try {
+            const post = await Youzhne.destroy({ where: {id}})
             if (post) {
                 res.status(200).json({ message: 'Post deleted' })
             } else {

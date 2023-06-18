@@ -49,6 +49,14 @@ const Brovary = sequelize.define('Brovary', {
         type: DataTypes.STRING,
         allowNull: false
     },
+    mainImgDesc: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    mainImgAuthor: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
     imageSize: {
         type: DataTypes.BOOLEAN,
         allowNull: false,

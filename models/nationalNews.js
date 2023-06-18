@@ -63,7 +63,7 @@ const NationalNews = sequelize.define('NationalNews', {
         defaultValue: false
     },
     content: {
-        type: DataTypes.TEXT,
+        type: DataTypes.TEXT('long'),
         allowNull: false
     },
     live: {
