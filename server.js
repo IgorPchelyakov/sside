@@ -14,8 +14,12 @@ import fileUpload from 'express-fileupload'
 
 import regionKyivRouter from './routes/regionFeeds/regionKyiv.js'
 import regionOdesaRouter from './routes/regionFeeds/regionOdesa.js'
+import regionDniproRouter from './routes/regionFeeds/regionDnipro.js'
 import connectionRouter from './routes/connection.js'
 import countersRouter from './routes/counters.js'
+import sectionNewsRouter from './routes/sectionNews.js'
+
+import searchRouter from './routes/search.js'
 
 dotenv.config()
 
@@ -37,8 +41,12 @@ app.use('/api', mediaRouter)
 app.use('/api', bannerRouter)
 app.use('/api', regionKyivRouter)
 app.use('/api', regionOdesaRouter)
+app.use('/api', regionDniproRouter)
 app.use('/api', connectionRouter)
 app.use('/api', countersRouter)
+app.use('/api', sectionNewsRouter)
+
+app.use('/api', searchRouter)
 
 const start = () => {
     try {

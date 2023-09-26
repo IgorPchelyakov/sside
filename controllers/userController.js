@@ -2,11 +2,27 @@ import User from "../models/user.js"
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import fs from 'fs'
+import { Op } from "sequelize"
 
 const UserController = {
     getAllUsers: async (req, res) => {
         try {
             const users = await User.findAll()
+            res.status(200).json(users)
+        } catch (error) {
+            console.error(error)
+            res.status(500).json({ message: 'Server error' })
+        }
+    },
+    getAuthors: async (req, res) => {
+        try {
+            const users = await User.findAll({
+                where: {
+                    role: {
+                        [Op.notIn]: ['Super Admin', 'Головний редактор', 'Партнер ММ']
+                    }
+                }
+            })
             res.status(200).json(users)
         } catch (error) {
             console.error(error)

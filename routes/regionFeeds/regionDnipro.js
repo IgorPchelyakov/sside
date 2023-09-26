@@ -1,0 +1,105 @@
+import DniproNewsController from "../../controllers/regionNews/dniproNewsController.js";
+import { Router } from "express";
+import { checkAuth } from "../../middleware/checkAuth.js";
+
+const router = Router()
+// Dnipro
+router.get('/dnipro/news', DniproNewsController.getAllDniproNews)
+router.get('/dnipro/with-national-news', DniproNewsController.getAllDniproWithNationalNews)
+router.get('/dnipro/news/:param', DniproNewsController.getDniproNewsByIdOrUrl)
+router.get('/dnipro/news/news-today/:date', DniproNewsController.getAllDniproNewsByDate)
+router.put('/dnipro/news/edit/:id', checkAuth, DniproNewsController.updateDniproNews)
+router.post('/dnipro/news/delete/:id', checkAuth, DniproNewsController.deleteDniproNews)
+// Kamianske
+router.get('/kamianske/news', DniproNewsController.getAllKamianskeNews)
+router.get('/kamianske/with-national-news', DniproNewsController.getAllKamianskeWithNationalNews)
+router.get('/kamianske/news/:param', DniproNewsController.getKamianskeNewsByIdOrUrl)
+router.get('/kamianske/news/news-today/:date', DniproNewsController.getAllKamianskeNewsByDate)
+router.put('/kamianske/news/edit/:id', checkAuth, DniproNewsController.updateKamianskeNews)
+router.post('/kamianske/news/delete/:id', checkAuth, DniproNewsController.deleteKamianskeNews)
+// KryvyiRih
+router.get('/kryvyi-rih/news', DniproNewsController.getAllKryvyiRihNews)
+router.get('/kryvyi-rih/with-national-news', DniproNewsController.getAllKryvyiRihWithNationalNews)
+router.get('/kryvyi-rih/news/:param', DniproNewsController.getKryvyiRihNewsByIdOrUrl)
+router.get('/kryvyi-rih/news/news-today/:date', DniproNewsController.getAllKryvyiRihNewsByDate)
+router.put('/kryvyi-rih/news/edit/:id', checkAuth, DniproNewsController.updateKryvyiRihNews)
+router.post('/kryvyi-rih/news/delete/:id', checkAuth, DniproNewsController.deleteKryvyiRihNews)
+// Marganets
+router.get('/marganets/news', DniproNewsController.getAllMarganetsNews)
+router.get('/marganets/with-national-news', DniproNewsController.getAllMarganetsWithNationalNews)
+router.get('/marganets/news/:param', DniproNewsController.getMarganetsNewsByIdOrUrl)
+router.get('/marganets/news/news-today/:date', DniproNewsController.getAllMarganetsNewsByDate)
+router.put('/marganets/news/edit/:id', checkAuth, DniproNewsController.updateMarganetsNews)
+router.post('/marganets/news/delete/:id', checkAuth, DniproNewsController.deleteMarganetsNews)
+// Nikopol
+router.get('/nikopol/news', DniproNewsController.getAllNikopolNews)
+router.get('/nikopol/with-national-news', DniproNewsController.getAllNikopolWithNationalNews)
+router.get('/nikopol/news/:param', DniproNewsController.getNikopolNewsByIdOrUrl)
+router.get('/nikopol/news/news-today/:date', DniproNewsController.getAllNikopolNewsByDate)
+router.put('/nikopol/news/edit/:id', checkAuth, DniproNewsController.updateNikopolNews)
+router.post('/nikopol/news/delete/:id', checkAuth, DniproNewsController.deleteNikopolNews)
+// Novomoskovsk
+router.get('/novomoskovsk/news', DniproNewsController.getAllNovomoskovskNews)
+router.get('/novomoskovsk/with-national-news', DniproNewsController.getAllNovomoskovskWithNationalNews)
+router.get('/novomoskovsk/news/:param', DniproNewsController.getNovomoskovskNewsByIdOrUrl)
+router.get('/novomoskovsk/news/news-today/:date', DniproNewsController.getAllNovomoskovskNewsByDate)
+router.put('/novomoskovsk/news/edit/:id', checkAuth, DniproNewsController.updateNovomoskovskNews)
+router.post('/novomoskovsk/news/delete/:id', checkAuth, DniproNewsController.deleteNovomoskovskNews)
+// Pavlograd
+router.get('/pavlograd/news', DniproNewsController.getAllPavlogradNews)
+router.get('/pavlograd/with-national-news', DniproNewsController.getAllPavlogradWithNationalNews)
+router.get('/pavlograd/news/:param', DniproNewsController.getPavlogradNewsByIdOrUrl)
+router.get('/pavlograd/news/news-today/:date', DniproNewsController.getAllPavlogradNewsByDate)
+router.put('/pavlograd/news/edit/:id', checkAuth, DniproNewsController.updatePavlogradNews)
+router.post('/pavlograd/news/delete/:id', checkAuth, DniproNewsController.deletePavlogradNews)
+// Pershotravensk
+router.get('/pershotravensk/news', DniproNewsController.getAllPershotravenskNews)
+router.get('/pershotravensk/with-national-news', DniproNewsController.getAllPershotravenskWithNationalNews)
+router.get('/pershotravensk/news/:param', DniproNewsController.getPershotravenskNewsByIdOrUrl)
+router.get('/pershotravensk/news/news-today/:date', DniproNewsController.getAllPershotravenskNewsByDate)
+router.put('/pershotravensk/news/edit/:id', checkAuth, DniproNewsController.updatePershotravenskNews)
+router.post('/pershotravensk/news/delete/:id', checkAuth, DniproNewsController.deletePershotravenskNews)
+// Pokrov
+router.get('/pokrov/news', DniproNewsController.getAllPokrovNews)
+router.get('/pokrov/with-national-news', DniproNewsController.getAllPokrovWithNationalNews)
+router.get('/pokrov/news/:param', DniproNewsController.getPokrovNewsByIdOrUrl)
+router.get('/pokrov/news/news-today/:date', DniproNewsController.getAllPokrovNewsByDate)
+router.put('/pokrov/news/edit/:id', checkAuth, DniproNewsController.updatePokrovNews)
+router.post('/pokrov/news/delete/:id', checkAuth, DniproNewsController.deletePokrovNews)
+// Pyatihatky
+router.get('/pyatihatky/news', DniproNewsController.getAllPyatihatkyNews)
+router.get('/pyatihatky/with-national-news', DniproNewsController.getAllPyatihatkyWithNationalNews)
+router.get('/pyatihatky/news/:param', DniproNewsController.getPyatihatkyNewsByIdOrUrl)
+router.get('/pyatihatky/news/news-today/:date', DniproNewsController.getAllPyatihatkyNewsByDate)
+router.put('/pyatihatky/news/edit/:id', checkAuth, DniproNewsController.updatePyatihatkyNews)
+router.post('/pyatihatky/news/delete/:id', checkAuth, DniproNewsController.deletePyatihatkyNews)
+// Sinelnikovo
+router.get('/sinelnikovo/news', DniproNewsController.getAllSinelnikovoNews)
+router.get('/sinelnikovo/with-national-news', DniproNewsController.getAllSinelnikovoWithNationalNews)
+router.get('/sinelnikovo/news/:param', DniproNewsController.getSinelnikovoNewsByIdOrUrl)
+router.get('/sinelnikovo/news/news-today/:date', DniproNewsController.getAllSinelnikovoNewsByDate)
+router.put('/sinelnikovo/news/edit/:id', checkAuth, DniproNewsController.updateSinelnikovoNews)
+router.post('/sinelnikovo/news/delete/:id', checkAuth, DniproNewsController.deleteSinelnikovoNews)
+// Ternivka
+router.get('/ternivka/news', DniproNewsController.getAllTernivkaNews)
+router.get('/ternivka/with-national-news', DniproNewsController.getAllTernivkaWithNationalNews)
+router.get('/ternivka/news/:param', DniproNewsController.getTernivkaNewsByIdOrUrl)
+router.get('/ternivka/news/news-today/:date', DniproNewsController.getAllTernivkaNewsByDate)
+router.put('/ternivka/news/edit/:id', checkAuth, DniproNewsController.updateTernivkaNews)
+router.post('/ternivka/news/delete/:id', checkAuth, DniproNewsController.deleteTernivkaNews)
+// Vilnohorsk
+router.get('/vilnohorsk/news', DniproNewsController.getAllVilnohorskNews)
+router.get('/vilnohorsk/with-national-news', DniproNewsController.getAllVilnohorskWithNationalNews)
+router.get('/vilnohorsk/news/:param', DniproNewsController.getVilnohorskNewsByIdOrUrl)
+router.get('/vilnohorsk/news/news-today/:date', DniproNewsController.getAllVilnohorskNewsByDate)
+router.put('/vilnohorsk/news/edit/:id', checkAuth, DniproNewsController.updateVilnohorskNews)
+router.post('/vilnohorsk/news/delete/:id', checkAuth, DniproNewsController.deleteVilnohorskNews)
+// ZhovtiVody
+router.get('/zhovti-vody/news', DniproNewsController.getAllZhovtiVodyNews)
+router.get('/zhovti-vody/with-national-news', DniproNewsController.getAllZhovtiVodyWithNationalNews)
+router.get('/zhovti-vody/news/:param', DniproNewsController.getZhovtiVodyNewsByIdOrUrl)
+router.get('/zhovti-vody/news/news-today/:date', DniproNewsController.getAllZhovtiVodyNewsByDate)
+router.put('/zhovti-vody/news/edit/:id', checkAuth, DniproNewsController.updateZhovtiVodyNews)
+router.post('/zhovti-vody/news/delete/:id', checkAuth, DniproNewsController.deleteZhovtiVodyNews)
+
+export default router
