@@ -28,6 +28,7 @@ router.get('/izmail/search', SearchController.searchIzmailNews)
 router.get('/kiliya/search', SearchController.searchKiliyaNews)
 router.get('/odesa/search', SearchController.searchOdesaNews)
 router.get('/podilsk/search', SearchController.searchPodilskNews)
+router.get('/teplodar/search', SearchController.searchTeplodarNews)
 router.get('/youzhne/search', SearchController.searchYouzhneNews)
 // Dnipro
 router.get('/dnipro/search', SearchController.searchDniproNews)

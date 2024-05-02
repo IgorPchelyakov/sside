@@ -38,11 +38,12 @@ import Ternivka from '../models/feeds/regionDnipro/ternivka.js'
 import Vilnohorsk from '../models/feeds/regionDnipro/vilnohorsk.js'
 import ZhovtiVody from '../models/feeds/regionDnipro/zhovti-vody.js'
 import Sinelnikovo from '../models/feeds/regionDnipro/sinelnikovo.js'
+import Teplodar from '../models/feeds/regionOdesa/teplodar.js'
 
 const SearchController = {
     searchNationalNews: async (req, res) => {
         const { query } = req.query
-
+        
         try {
             const posts = await NationalNews.findAll({
                 where: {
@@ -51,6 +52,7 @@ const SearchController = {
                         Sequelize.where(Sequelize.fn('LOWER', Sequelize.col('desc')), 'LIKE', `%${query.toLowerCase()}%`),
                     ],
                 },
+                attributes: ['id', 'publishedAt', 'feed', 'url', 'postType', 'block', 'section', 'title', 'desc', 'mainImage', 'mainImgDesc', 'mainImgAuthor', 'UserId'],
                 order: [['publishedAt', 'DESC']],
             })
 
@@ -838,28 +840,38 @@ const SearchController = {
         const { query } = req.query
 
         try {
-            const nationalNews = await NationalNews.findAll({
+            const posts = await Podilsk.findAll({
                 where: {
                     [Op.or]: [
                         Sequelize.where(Sequelize.fn('LOWER', Sequelize.col('title')), 'LIKE', `%${query.toLowerCase()}%`),
                         Sequelize.where(Sequelize.fn('LOWER', Sequelize.col('desc')), 'LIKE', `%${query.toLowerCase()}%`),
                     ],
                 },
+                attributes: ['id', 'publishedAt', 'feed', 'url', 'postType', 'block', 'section', 'title', 'desc', 'mainImage', 'mainImgDesc', 'mainImgAuthor', 'UserId'],
                 order: [['publishedAt', 'DESC']],
             })
 
-            const news = await Podilsk.findAll({
+            res.status(200).json(posts);
+        } catch (error) {
+            res.status(500).json({
+                message: 'Помилка серверу'
+            })
+        }
+    },
+    searchTeplodarNews: async (req, res) => {
+        const { query } = req.query
+
+        try {
+            const posts = await Teplodar.findAll({
                 where: {
                     [Op.or]: [
                         Sequelize.where(Sequelize.fn('LOWER', Sequelize.col('title')), 'LIKE', `%${query.toLowerCase()}%`),
                         Sequelize.where(Sequelize.fn('LOWER', Sequelize.col('desc')), 'LIKE', `%${query.toLowerCase()}%`),
                     ],
                 },
+                attributes: ['id', 'publishedAt', 'feed', 'url', 'postType', 'block', 'section', 'title', 'desc', 'mainImage', 'mainImgDesc', 'mainImgAuthor', 'UserId'],
                 order: [['publishedAt', 'DESC']],
             })
-
-            const posts = nationalNews.concat(news)
-            posts.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
 
             res.status(200).json(posts);
         } catch (error) {

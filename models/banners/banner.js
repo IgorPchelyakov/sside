@@ -1,5 +1,5 @@
 import { DataTypes } from "sequelize";
-import sequelize from "../DBConnect.js";
+import sequelize from "../../DBConnect.js";
 
 const Banner = sequelize.define('Banner', {
     id: {
@@ -8,46 +8,47 @@ const Banner = sequelize.define('Banner', {
         primaryKey: true,
         allowNull: false,
     },
-    title: {
+    name: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    desc: {
+    images: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+      },
+    headlines: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+    },
+    descriptions: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+    },
+    advertiserLinks: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+    },
+    newsFeed: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    imgUrl: {
+    bannerType: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    block: {
-        type: DataTypes.STRING,
+    blockTypes: {
+        type: DataTypes.TEXT,
         allowNull: false,
     },
-    mobile: {
-        type: DataTypes.BOOLEAN,
+    version: {
+        type: DataTypes.ENUM('mobile', 'desktop', 'mobile-desktop'),
         allowNull: false,
-        defaultValue: false
     },
-    desktop: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-        defaultValue: false
-    },
-    urlOpen: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-        defaultValue: false
-    },
-    url: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    publishAt: {
+    startDate: {
         type: DataTypes.DATE,
         allowNull: false,
     },
-    endAt: {
+    endDate: {
         type: DataTypes.DATE,
         allowNull: false,
     },

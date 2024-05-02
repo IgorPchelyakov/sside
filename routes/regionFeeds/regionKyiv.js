@@ -1,126 +1,343 @@
-import NewsController from "../../controllers/newsController.js"
-import { Router } from 'express'
-import { checkAuth } from "../../middleware/checkAuth.js"
+import { Router } from "express";
+import NewsController from "../../controllers/newsController.js";
+import { checkAuth } from "../../middleware/checkAuth.js";
 
-const router = Router()
+const router = Router();
 
-router.get('/berezan/news', NewsController.getAllBerezanNews)
-router.get('/berezan/with-national-news', NewsController.getAllBerezanWithNationalNews)
-router.get('/berezan/news/:param', NewsController.getBerezanNewsByIdOrUrl)
-router.get('/berezan/news/news-today/:date', NewsController.getAllBerezanNewsByDate)
-router.put('/berezan/news/edit/:id', checkAuth, NewsController.updateBerezanNews)
-router.post('/berezan/news/delete/:id', checkAuth, NewsController.deleteBerezanNews)
+router.get("/berezan/news", NewsController.getAllBerezanNews);
+router.get(
+  "/berezan/with-national-news",
+  NewsController.getAllBerezanWithNationalNews
+);
+router.get("/berezan/news/:param", NewsController.getBerezanNewsByIdOrUrl);
+router.get(
+  "/berezan/news/news-today/:date",
+  NewsController.getAllBerezanNewsByDate
+);
+router.put(
+  "/berezan/news/edit/:id",
+  checkAuth,
+  NewsController.updateBerezanNews
+);
+router.post(
+  "/berezan/news/delete/:id",
+  checkAuth,
+  NewsController.deleteBerezanNews
+);
 
-router.get('/bilacerkva/news', NewsController.getAllBilacerkvaNews)
-router.get('/bilacerkva/with-national-news', NewsController.getAllBilacerkvaWithNationalNews)
-router.get('/bilacerkva/news/:param', NewsController.getBilacerkvaNewsByIdOrUrl)
-router.get('/bilacerkva/news/news-today/:date', NewsController.getAllBilacerkvaNewsByDate)
-router.put('/bilacerkva/news/edit/:id', checkAuth, NewsController.updateBilacerkvaNews)
-router.post('/bilacerkva/news/delete/:id', checkAuth, NewsController.deleteBilacerkvaNews)
+router.get("/bilacerkva/news", NewsController.getAllBilacerkvaNews);
+router.get(
+  "/bilacerkva/with-national-news",
+  NewsController.getAllBilacerkvaWithNationalNews
+);
+router.get(
+  "/bilacerkva/news/:param",
+  NewsController.getBilacerkvaNewsByIdOrUrl
+);
+router.get(
+  "/bilacerkva/news/news-today/:date",
+  NewsController.getAllBilacerkvaNewsByDate
+);
+router.put(
+  "/bilacerkva/news/edit/:id",
+  checkAuth,
+  NewsController.updateBilacerkvaNews
+);
+router.post(
+  "/bilacerkva/news/delete/:id",
+  checkAuth,
+  NewsController.deleteBilacerkvaNews
+);
 
-router.get('/boryspil/news', NewsController.getAllBoryspilNews)
-router.get('/boryspil/with-national-news', NewsController.getAllBoryspilWithNationalNews)
-router.get('/boryspil/news/:param', NewsController.getBoryspilNewsByIdOrUrl)
-router.get('/boryspil/news/news-today/:date', NewsController.getAllBoryspilNewsByDate)
-router.put('/boryspil/news/edit/:id', checkAuth, NewsController.updateBoryspilNews)
-router.post('/boryspil/news/delete/:id', checkAuth, NewsController.deleteBoryspilNews)
+router.get("/boryspil/news", NewsController.getAllBoryspilNews);
+router.get(
+  "/boryspil/with-national-news",
+  NewsController.getAllBoryspilWithNationalNews
+);
+router.get("/boryspil/news/:param", NewsController.getBoryspilNewsByIdOrUrl);
+router.get(
+  "/boryspil/news/news-today/:date",
+  NewsController.getAllBoryspilNewsByDate
+);
+router.put(
+  "/boryspil/news/edit/:id",
+  checkAuth,
+  NewsController.updateBoryspilNews
+);
+router.post(
+  "/boryspil/news/delete/:id",
+  checkAuth,
+  NewsController.deleteBoryspilNews
+);
 
-router.get('/boyarka/news', NewsController.getAllBoyarkaNews)
-router.get('/boyarka/with-national-news', NewsController.getAllBoyarkaWithNationalNews)
-router.get('/boyarka/news/:param', NewsController.getBoyarkaNewsByIdOrUrl)
-router.get('/boyarka/news/news-today/:date', NewsController.getAllBoyarkaNewsByDate)
-router.put('/boyarka/news/edit/:id', checkAuth, NewsController.updateBoyarkaNews)
-router.post('/boyarka/news/delete/:id', checkAuth, NewsController.deleteBoyarkaNews)
+router.get("/boyarka/news", NewsController.getAllBoyarkaNews);
+router.get(
+  "/boyarka/with-national-news",
+  NewsController.getAllBoyarkaWithNationalNews
+);
+router.get("/boyarka/news/:param", NewsController.getBoyarkaNewsByIdOrUrl);
+router.get(
+  "/boyarka/news/news-today/:date",
+  NewsController.getAllBoyarkaNewsByDate
+);
+router.put(
+  "/boyarka/news/edit/:id",
+  checkAuth,
+  NewsController.updateBoyarkaNews
+);
+router.post(
+  "/boyarka/news/delete/:id",
+  checkAuth,
+  NewsController.deleteBoyarkaNews
+);
 
-router.get('/brovary/news', NewsController.getAllBrovaryNews)
-router.get('/brovary/with-national-news', NewsController.getAllBrovaryWithNationalNews)
-router.get('/brovary/news/:param', NewsController.getBrovaryNewsByIdOrUrl)
-router.get('/brovary/news/news-today/:date', NewsController.getAllBrovaryNewsByDate)
-router.put('/brovary/news/edit/:id', checkAuth, NewsController.updateBrovaryNews)
-router.post('/brovary/news/delete/:id', checkAuth, NewsController.deleteBrovaryNews)
+router.get("/brovary/news", NewsController.getAllBrovaryNews);
+router.get(
+  "/brovary/with-national-news",
+  NewsController.getAllBrovaryWithNationalNews
+);
+router.get("/brovary/news/:param", NewsController.getBrovaryNewsByIdOrUrl);
+router.get(
+  "/brovary/news/news-today/:date",
+  NewsController.getAllBrovaryNewsByDate
+);
+router.put(
+  "/brovary/news/edit/:id",
+  checkAuth,
+  NewsController.updateBrovaryNews
+);
+router.post(
+  "/brovary/news/delete/:id",
+  checkAuth,
+  NewsController.deleteBrovaryNews
+);
 
-router.get('/bucha/news', NewsController.getAllBuchaNews)
-router.get('/bucha/with-national-news', NewsController.getAllBuchaWithNationalNews)
-router.get('/bucha/news/:param', NewsController.getBuchaNewsByIdOrUrl)
-router.get('/bucha/news/news-today/:date', NewsController.getAllBuchaNewsByDate)
-router.put('/bucha/news/edit/:id', checkAuth, NewsController.updateBuchaNews)
-router.post('/bucha/news/delete/:id', checkAuth, NewsController.deleteBuchaNews)
+router.get("/bucha/news", NewsController.getAllBuchaNews);
+router.get(
+  "/bucha/with-national-news",
+  NewsController.getAllBuchaWithNationalNews
+);
+router.get("/bucha/news/:param", NewsController.getBuchaNewsByIdOrUrl);
+router.get(
+  "/bucha/news/news-today/:date",
+  NewsController.getAllBuchaNewsByDate
+);
+router.put("/bucha/news/edit/:id", checkAuth, NewsController.updateBuchaNews);
+router.post(
+  "/bucha/news/delete/:id",
+  checkAuth,
+  NewsController.deleteBuchaNews
+);
 
-router.get('/fastiv/news', NewsController.getAllFastivNews)
-router.get('/fastiv/with-national-news', NewsController.getAllFastivWithNationalNews)
-router.get('/fastiv/news/:param', NewsController.getFastivNewsByIdOrUrl)
-router.get('/fastiv/news/news-today/:date', NewsController.getAllFastivNewsByDate)
-router.put('/fastiv/news/edit/:id', checkAuth, NewsController.updateFastivNews)
-router.post('/fastiv/news/delete/:id', checkAuth, NewsController.deleteFastivNews)
+router.get("/fastiv/news", NewsController.getAllFastivNews);
+router.get(
+  "/fastiv/with-national-news",
+  NewsController.getAllFastivWithNationalNews
+);
+router.get("/fastiv/news/:param", NewsController.getFastivNewsByIdOrUrl);
+router.get(
+  "/fastiv/news/news-today/:date",
+  NewsController.getAllFastivNewsByDate
+);
+router.put("/fastiv/news/edit/:id", checkAuth, NewsController.updateFastivNews);
+router.post(
+  "/fastiv/news/delete/:id",
+  checkAuth,
+  NewsController.deleteFastivNews
+);
 
-router.get('/irpin/news', NewsController.getAllIrpinNews)
-router.get('/irpin/with-national-news', NewsController.getAllIrpinWithNationalNews)
-router.get('/irpin/news/:param', NewsController.getIrpinNewsByIdOrUrl)
-router.get('/irpin/news/news-today/:date', NewsController.getAllIrpinNewsByDate)
-router.put('/irpin/news/edit/:id', checkAuth, NewsController.updateIrpinNews)
-router.post('/irpin/news/delete/:id', checkAuth, NewsController.deleteIrpinNews)
+router.get("/irpin/news", NewsController.getAllIrpinNews);
+router.get(
+  "/irpin/with-national-news",
+  NewsController.getAllIrpinWithNationalNews
+);
+router.get("/irpin/news/:param", NewsController.getIrpinNewsByIdOrUrl);
+router.get(
+  "/irpin/news/news-today/:date",
+  NewsController.getAllIrpinNewsByDate
+);
+router.put("/irpin/news/edit/:id", checkAuth, NewsController.updateIrpinNews);
+router.post(
+  "/irpin/news/delete/:id",
+  checkAuth,
+  NewsController.deleteIrpinNews
+);
 
-router.get('/kyiv/news', NewsController.getAllKyivNews)
-router.get('/kyiv/with-national-news', NewsController.getAllKyivWithNationalNews)
-router.get('/kyiv/news/:param', NewsController.getKyivNewsByIdOrUrl)
-router.get('/kyiv/news/news-today/:date', NewsController.getAllKyivNewsByDate)
-router.put('/kyiv/news/edit/:id', checkAuth, NewsController.updateKyivNews)
-router.post('/kyiv/news/delete/:id', checkAuth, NewsController.deleteKyivNews)
+router.get("/kyiv/news", NewsController.getAllKyivNews);
+router.get(
+  "/kyiv/with-national-news",
+  NewsController.getAllKyivWithNationalNews
+);
+router.get("/kyiv/news/:param", NewsController.getKyivNewsByIdOrUrl);
+router.get("/kyiv/news/news-today/:date", NewsController.getAllKyivNewsByDate);
+router.put("/kyiv/news/edit/:id", checkAuth, NewsController.updateKyivNews);
+router.post("/kyiv/news/delete/:id", checkAuth, NewsController.deleteKyivNews);
 
-router.get('/obukhiv/news', NewsController.getAllObukhivNews)
-router.get('/obukhiv/with-national-news', NewsController.getAllObukhivWithNationalNews)
-router.get('/obukhiv/news/:param', NewsController.getObukhivNewsByIdOrUrl)
-router.get('/obukhiv/news/news-today/:date', NewsController.getAllObukhivNewsByDate)
-router.put('/obukhiv/news/edit/:id', checkAuth, NewsController.updateObukhivNews)
-router.post('/obukhiv/news/delete/:id', checkAuth, NewsController.deleteObukhivNews)
+router.get("/obukhiv/news", NewsController.getAllObukhivNews);
+router.get(
+  "/obukhiv/with-national-news",
+  NewsController.getAllObukhivWithNationalNews
+);
+router.get("/obukhiv/news/:param", NewsController.getObukhivNewsByIdOrUrl);
+router.get(
+  "/obukhiv/news/news-today/:date",
+  NewsController.getAllObukhivNewsByDate
+);
+router.put(
+  "/obukhiv/news/edit/:id",
+  checkAuth,
+  NewsController.updateObukhivNews
+);
+router.post(
+  "/obukhiv/news/delete/:id",
+  checkAuth,
+  NewsController.deleteObukhivNews
+);
 
-router.get('/pereyaslav/news', NewsController.getAllPereyaslavNews)
-router.get('/pereyaslav/with-national-news', NewsController.getAllPereyaslavWithNationalNews)
-router.get('/pereyaslav/news/:param', NewsController.getPereyaslavNewsByIdOrUrl)
-router.get('/pereyaslav/news/news-today/:date', NewsController.getAllPereyaslavNewsByDate)
-router.put('/pereyaslav/news/edit/:id', checkAuth, NewsController.updatePereyaslavNews)
-router.post('/pereyaslav/news/delete/:id', checkAuth, NewsController.deletePereyaslavNews)
+router.get("/pereyaslav/news", NewsController.getAllPereyaslavNews);
+router.get(
+  "/pereyaslav/with-national-news",
+  NewsController.getAllPereyaslavWithNationalNews
+);
+router.get(
+  "/pereyaslav/news/:param",
+  NewsController.getPereyaslavNewsByIdOrUrl
+);
+router.get(
+  "/pereyaslav/news/news-today/:date",
+  NewsController.getAllPereyaslavNewsByDate
+);
+router.put(
+  "/pereyaslav/news/edit/:id",
+  checkAuth,
+  NewsController.updatePereyaslavNews
+);
+router.post(
+  "/pereyaslav/news/delete/:id",
+  checkAuth,
+  NewsController.deletePereyaslavNews
+);
 
-router.get('/skvyra/news', NewsController.getAllSkvyraNews)
-router.get('/skvyra/with-national-news', NewsController.getAllSkvyraWithNationalNews)
-router.get('/skvyra/news/:param', NewsController.getSkvyraNewsByIdOrUrl)
-router.get('/skvyra/news/news-today/:date', NewsController.getAllSkvyraNewsByDate)
-router.put('/skvyra/news/edit/:id', checkAuth, NewsController.updateSkvyraNews)
-router.post('/skvyra/news/delete/:id', checkAuth, NewsController.deleteSkvyraNews)
+router.get("/skvyra/news", NewsController.getAllSkvyraNews);
+router.get(
+  "/skvyra/with-national-news",
+  NewsController.getAllSkvyraWithNationalNews
+);
+router.get("/skvyra/news/:param", NewsController.getSkvyraNewsByIdOrUrl);
+router.get(
+  "/skvyra/news/news-today/:date",
+  NewsController.getAllSkvyraNewsByDate
+);
+router.put("/skvyra/news/edit/:id", checkAuth, NewsController.updateSkvyraNews);
+router.post(
+  "/skvyra/news/delete/:id",
+  checkAuth,
+  NewsController.deleteSkvyraNews
+);
 
-router.get('/slavutych/news', NewsController.getAllSlavutychNews)
-router.get('/slavutych/with-national-news', NewsController.getAllSlavutychWithNationalNews)
-router.get('/slavutych/news/:param', NewsController.getSlavutychNewsByIdOrUrl)
-router.get('/slavutych/news/news-today/:date', NewsController.getAllSlavutychNewsByDate)
-router.put('/slavutych/news/edit/:id', checkAuth, NewsController.updateSlavutychNews)
-router.post('/slavutych/news/delete/:id', checkAuth, NewsController.deleteSlavutychNews)
+router.get("/slavutych/news", NewsController.getAllSlavutychNews);
+router.get(
+  "/slavutych/with-national-news",
+  NewsController.getAllSlavutychWithNationalNews
+);
+router.get("/slavutych/news/:param", NewsController.getSlavutychNewsByIdOrUrl);
+router.get(
+  "/slavutych/news/news-today/:date",
+  NewsController.getAllSlavutychNewsByDate
+);
+router.put(
+  "/slavutych/news/edit/:id",
+  checkAuth,
+  NewsController.updateSlavutychNews
+);
+router.post(
+  "/slavutych/news/delete/:id",
+  checkAuth,
+  NewsController.deleteSlavutychNews
+);
 
-router.get('/vasylkiv/news', NewsController.getAllVasylkivNews)
-router.get('/vasylkiv/with-national-news', NewsController.getAllVasylkivWithNationalNews)
-router.get('/vasylkiv/news/:param', NewsController.getVasylkivNewsByIdOrUrl)
-router.get('/vasylkiv/news/news-today/:date', NewsController.getAllVasylkivNewsByDate)
-router.put('/vasylkiv/news/edit/:id', checkAuth, NewsController.updateVasylkivNews)
-router.post('/vasylkiv/news/delete/:id', checkAuth, NewsController.deleteVasylkivNews)
+router.get("/vasylkiv/news", NewsController.getAllVasylkivNews);
+router.get(
+  "/vasylkiv/with-national-news",
+  NewsController.getAllVasylkivWithNationalNews
+);
+router.get("/vasylkiv/news/:param", NewsController.getVasylkivNewsByIdOrUrl);
+router.get(
+  "/vasylkiv/news/news-today/:date",
+  NewsController.getAllVasylkivNewsByDate
+);
+router.put(
+  "/vasylkiv/news/edit/:id",
+  checkAuth,
+  NewsController.updateVasylkivNews
+);
+router.post(
+  "/vasylkiv/news/delete/:id",
+  checkAuth,
+  NewsController.deleteVasylkivNews
+);
 
-router.get('/vyshhorod/news', NewsController.getAllVyshhorodNews)
-router.get('/vyshhorod/with-national-news', NewsController.getAllVyshhorodWithNationalNews)
-router.get('/vyshhorod/news/:param', NewsController.getVyshhorodNewsByIdOrUrl)
-router.get('/vyshhorod/news/news-today/:date', NewsController.getAllVyshhorodNewsByDate)
-router.put('/vyshhorod/news/edit/:id', checkAuth, NewsController.updateVyshhorodNews)
-router.post('/vyshhorod/news/delete/:id', checkAuth, NewsController.deleteVyshhorodNews)
+router.get("/vyshhorod/news", NewsController.getAllVyshhorodNews);
+router.get(
+  "/vyshhorod/with-national-news",
+  NewsController.getAllVyshhorodWithNationalNews
+);
+router.get("/vyshhorod/news/:param", NewsController.getVyshhorodNewsByIdOrUrl);
+router.get(
+  "/vyshhorod/news/news-today/:date",
+  NewsController.getAllVyshhorodNewsByDate
+);
+router.put(
+  "/vyshhorod/news/edit/:id",
+  checkAuth,
+  NewsController.updateVyshhorodNews
+);
+router.post(
+  "/vyshhorod/news/delete/:id",
+  checkAuth,
+  NewsController.deleteVyshhorodNews
+);
 
-router.get('/vyshneve/news', NewsController.getAllVyshneveNews)
-router.get('/vyshneve/with-national-news', NewsController.getAllVyshneveWithNationalNews)
-router.get('/vyshneve/news/:param', NewsController.getVyshneveNewsByIdOrUrl)
-router.get('/vyshneve/news/news-today/:date', NewsController.getAllVyshneveNewsByDate)
-router.put('/vyshneve/news/edit/:id', checkAuth, NewsController.updateVyshneveNews)
-router.post('/vyshneve/news/delete/:id', checkAuth, NewsController.deleteVyshneveNews)
+router.get("/vyshneve/news", NewsController.getAllVyshneveNews);
+router.get(
+  "/vyshneve/with-national-news",
+  NewsController.getAllVyshneveWithNationalNews
+);
+router.get("/vyshneve/news/:param", NewsController.getVyshneveNewsByIdOrUrl);
+router.get(
+  "/vyshneve/news/news-today/:date",
+  NewsController.getAllVyshneveNewsByDate
+);
+router.put(
+  "/vyshneve/news/edit/:id",
+  checkAuth,
+  NewsController.updateVyshneveNews
+);
+router.post(
+  "/vyshneve/news/delete/:id",
+  checkAuth,
+  NewsController.deleteVyshneveNews
+);
 
-router.get('/yagotyn/news', NewsController.getAllYagotynNews)
-router.get('/yagotyn/with-national-news', NewsController.getAllYagotynWithNationalNews)
-router.get('/yagotyn/news/:param', NewsController.getYagotynNewsByIdOrUrl)
-router.get('/yagotyn/news/news-today/:date', NewsController.getAllYagotynNewsByDate)
-router.put('/yagotyn/news/edit/:id', checkAuth, NewsController.updateYagotynNews)
-router.post('/yagotyn/news/delete/:id', checkAuth, NewsController.deleteYagotynNews)
+router.get("/yagotyn/news", NewsController.getAllYagotynNews);
+router.get(
+  "/yagotyn/with-national-news",
+  NewsController.getAllYagotynWithNationalNews
+);
+router.get("/yagotyn/news/:param", NewsController.getYagotynNewsByIdOrUrl);
+router.get(
+  "/yagotyn/news/news-today/:date",
+  NewsController.getAllYagotynNewsByDate
+);
+router.put(
+  "/yagotyn/news/edit/:id",
+  checkAuth,
+  NewsController.updateYagotynNews
+);
+router.post(
+  "/yagotyn/news/delete/:id",
+  checkAuth,
+  NewsController.deleteYagotynNews
+);
 
-export default router
+export default router;

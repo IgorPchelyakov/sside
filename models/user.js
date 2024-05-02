@@ -2,7 +2,7 @@ import { DataTypes } from "sequelize"
 import sequelize from '../DBConnect.js'
 import Media from "./media.js"
 import NationalNews from "./nationalNews.js"
-import Banner from "./banner.js"
+import Banner from "./banners/banner.js"
 import Kyiv from "./feeds/regionKyiv/kyiv.js"
 import Bilacerkva from "./feeds/regionKyiv/bilacerkva.js"
 import Berezan from "./feeds/regionKyiv/berezan.js"
@@ -41,6 +41,8 @@ import Sinelnikovo from "./feeds/regionDnipro/sinelnikovo.js"
 import Ternivka from "./feeds/regionDnipro/ternivka.js"
 import Vilnohorsk from "./feeds/regionDnipro/vilnohorsk.js"
 import ZhovtiVody from "./feeds/regionDnipro/zhovti-vody.js"
+import Teplodar from "./feeds/regionOdesa/teplodar.js"
+import BannerMedia from "./banners/bannerMedia.js"
 
 const User = sequelize.define('User', {
     id: {
@@ -134,6 +136,8 @@ const User = sequelize.define('User', {
 
 User.hasMany(Media)
 Media.belongsTo(User)
+User.hasMany(BannerMedia)
+BannerMedia.belongsTo(User)
 
 User.hasMany(NationalNews)
 NationalNews.belongsTo(User)
@@ -185,6 +189,8 @@ User.hasMany(Odesa)
 Odesa.belongsTo(User)
 User.hasMany(Podilsk)
 Podilsk.belongsTo(User)
+User.hasMany(Teplodar)
+Teplodar.belongsTo(User)
 User.hasMany(Youzhne)
 Youzhne.belongsTo(User)
 // Dnipro

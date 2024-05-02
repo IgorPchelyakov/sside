@@ -1,78 +1,100 @@
-import express from 'express'
-import dotenv from 'dotenv'
-import sequelize from './DBConnect.js'
-import cors from 'cors'
-import cookieParser from 'cookie-parser'
-import logger from 'morgan'
+import cookieParser from "cookie-parser";
+import cors from "cors";
+import dotenv from "dotenv";
+import express from "express";
+import logger from "morgan";
+import sequelize from "./DBConnect.js";
 
-import userRouter from './routes/users.js'
-import newsRouter from './routes/news.js'
-import mediaRouter from './routes/media.js'
-import bannerRouter from './routes/banners.js'
-import bodyParser from 'body-parser'
-import fileUpload from 'express-fileupload'
+import bodyParser from "body-parser";
+import fileUpload from "express-fileupload";
+import bannerRouter from "./routes/banners.js";
+import mediaRouter from "./routes/media.js";
+import newsRouter from "./routes/news.js";
+import userRouter from "./routes/users.js";
 
-import regionKyivRouter from './routes/regionFeeds/regionKyiv.js'
-import regionOdesaRouter from './routes/regionFeeds/regionOdesa.js'
-import regionDniproRouter from './routes/regionFeeds/regionDnipro.js'
-import connectionRouter from './routes/connection.js'
-import countersRouter from './routes/counters.js'
-import sectionNewsRouter from './routes/sectionNews.js'
+import connectionRouter from "./routes/connection.js";
+import countersRouter from "./routes/counters.js";
+import regionDniproRouter from "./routes/regionFeeds/regionDnipro.js";
+import regionKyivRouter from "./routes/regionFeeds/regionKyiv.js";
+import regionOdesaRouter from "./routes/regionFeeds/regionOdesa.js";
+import sectionNewsRouter from "./routes/sectionNews.js";
 
-import searchRouter from './routes/search.js'
+import searchRouter from "./routes/search.js";
 
-dotenv.config()
+import sitemapsRouter from "./routes/sitemaps.js";
 
-const PORT = process.env.PORT || 5656
+import bannerMediaRouter from "./routes/bannerMedias.js";
+import citiesRouter from "./routes/location/Cities.js";
+import countriesRouter from "./routes/location/Countries.js";
+import regionsRouter from "./routes/location/Regions.js";
+import themesRouter from "./routes/topic.js";
 
-const app = express()
+dotenv.config();
 
-app.use(logger('dev'))
-app.use(bodyParser.json({limit: '50mb'}))
-app.use(bodyParser.urlencoded({extended: true, limit: '50mb'}))
-app.use(cookieParser())
-app.use(cors())
-app.use(fileUpload())
-app.use('/api/uploads', express.static('uploads'))
+const PORT = process.env.PORT || 5656;
 
-app.use('/api', userRouter)
-app.use('/api', newsRouter)
-app.use('/api', mediaRouter)
-app.use('/api', bannerRouter)
-app.use('/api', regionKyivRouter)
-app.use('/api', regionOdesaRouter)
-app.use('/api', regionDniproRouter)
-app.use('/api', connectionRouter)
-app.use('/api', countersRouter)
-app.use('/api', sectionNewsRouter)
+const app = express();
 
-app.use('/api', searchRouter)
+app.use(logger("dev"));
+app.use(bodyParser.json({ limit: "50mb" }));
+app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
+app.use(cookieParser());
+app.use(cors());
+app.use(fileUpload());
+app.use("/api/uploads", express.static("uploads"));
+
+app.use("/api", userRouter);
+app.use("/api", newsRouter);
+app.use("/api", mediaRouter);
+app.use("/api", bannerRouter);
+app.use("/api", regionKyivRouter);
+app.use("/api", regionOdesaRouter);
+app.use("/api", regionDniproRouter);
+app.use("/api", connectionRouter);
+app.use("/api", countersRouter);
+app.use("/api", sectionNewsRouter);
+
+app.use("/api", searchRouter);
+
+app.use("/api", sitemapsRouter);
+
+app.use("/api", themesRouter);
+app.use("/api", bannerMediaRouter);
+app.use("/api", countriesRouter);
+app.use("/api", regionsRouter);
+app.use("/api", citiesRouter);
 
 const start = () => {
-    try {
-        sequelize.authenticate()
-            .then(() => {
-                console.log('Connection to database has been established successfully.')
-            })
-            .catch((error) => {
-                console.error('Unable to connect to the database:', error)
-            })
+  try {
+    sequelize
+      .authenticate()
+      .then(() => {
+        console.log(
+          "Connection to database has been established successfully."
+        );
+      })
+      .catch((error) => {
+        console.error("Unable to connect to the database:", error);
+      });
 
-        sequelize.sync()
-            .then(() => {
-                console.log('All models were synchronized successfully.')
-            })
-            .catch((error) => {
-                console.error('An error occurred while synchronizing the models:', error)
-            })
+    sequelize
+      .sync()
+      .then(() => {
+        console.log("All models were synchronized successfully.");
+      })
+      .catch((error) => {
+        console.error(
+          "An error occurred while synchronizing the models:",
+          error
+        );
+      });
 
-        app.listen(PORT, () => {
-            console.log(`Server listening on port ${PORT}`)
-        })
-    } catch (error) {
-        console.log(error)
-    }
-}
+    app.listen(PORT, () => {
+      console.log(`Server listening on port ${PORT}`);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-
-start()
+start();

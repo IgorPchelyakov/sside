@@ -1,8 +1,7 @@
 import { DataTypes } from "sequelize";
-import sequelize from "../DBConnect.js";
-import Topic from "./topic.js";
+import sequelize from "../../../DBConnect.js";
 
-const NationalNews = sequelize.define('NationalNews', {
+const Teplodar = sequelize.define('Teplodar', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -64,7 +63,7 @@ const NationalNews = sequelize.define('NationalNews', {
         defaultValue: false
     },
     content: {
-        type: DataTypes.TEXT('long'),
+        type: DataTypes.TEXT,
         allowNull: false
     },
     live: {
@@ -91,18 +90,11 @@ const NationalNews = sequelize.define('NationalNews', {
         type: DataTypes.INTEGER,
         allowNull: false,
         defaultValue: 0
-    },
-    topicId: {
-        type: DataTypes.INTEGER,
-        allowNull: true,
-    },
+    }
 }, {
     sequelize,
-    modelName: 'national_news',
+    modelName: 'teplodar',
     underscored: true,
 })
 
-NationalNews.belongsTo(Topic, { foreignKey: 'topicId', as: 'topic' });
-Topic.hasMany(NationalNews, { foreignKey: 'topicId', as: 'national_news' });
-
-export default NationalNews
+export default Teplodar
