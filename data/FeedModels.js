@@ -29,14 +29,6 @@ import Vasylkiv from "../models/feeds/regionKyiv/vasylkiv.js";
 import Vyshhorod from "../models/feeds/regionKyiv/vyshhorod.js";
 import Vyshneve from "../models/feeds/regionKyiv/vyshneve.js";
 import Yagotyn from "../models/feeds/regionKyiv/yagotyn.js";
-import BilgorodDnistrovsky from "../models/feeds/regionOdesa/bilgorod-dnistrovsky.js";
-import Chornomorsk from "../models/feeds/regionOdesa/chornomorsk.js";
-import Izmail from "../models/feeds/regionOdesa/izmail.js";
-import Kiliya from "../models/feeds/regionOdesa/kiliya.js";
-import Odesa from "../models/feeds/regionOdesa/odesa.js";
-import Podilsk from "../models/feeds/regionOdesa/podilsk.js";
-import Teplodar from "../models/feeds/regionOdesa/teplodar.js";
-import Youzhne from "../models/feeds/regionOdesa/youzhne.js";
 import NationalNews from "../models/nationalNews.js";
 
 const models = {
@@ -60,14 +52,14 @@ const models = {
   Вишневе: Vyshneve,
   Яготин: Yagotyn,
   // Odesa region
-  "Білгород-Дністровський": BilgorodDnistrovsky,
-  Чорноморськ: Chornomorsk,
-  Ізмаїл: Izmail,
-  Кілія: Kiliya,
-  Одеса: Odesa,
-  Подільськ: Podilsk,
-  Теплодар: Teplodar,
-  Южне: Youzhne,
+  // "Білгород-Дністровський": BilgorodDnistrovsky,
+  // Чорноморськ: Chornomorsk,
+  // Ізмаїл: Izmail,
+  // Кілія: Kiliya,
+  // Одеса: Odesa,
+  // Подільськ: Podilsk,
+  // Теплодар: Teplodar,
+  // Южне: Youzhne,
   // Dnipro region
   Дніпро: Dnipro,
   "Кривий Ріг": KryvyiRih,

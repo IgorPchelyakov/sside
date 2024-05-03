@@ -4,6 +4,7 @@ import OdesaGetAllNewsController from "../../controllers/regionNews/Odesa/OdesaG
 import OdesaGetAllNewsWithNNController from "../../controllers/regionNews/Odesa/OdesaGetAllNewsWithNNController.js";
 import OdesaGetNewsByDate from "../../controllers/regionNews/Odesa/OdesaGetNewsByDate.js";
 import OdesaGetNewsByIdOrUrl from "../../controllers/regionNews/Odesa/OdesaGetNewsByIdOrUrlController.js";
+import OdesaSearchNewsController from "../../controllers/regionNews/Odesa/OdesaSearchNewsController.js";
 import OdesaUpdateNewsController from "../../controllers/regionNews/Odesa/OdesaUpdateNewsController.js";
 import { checkAuth } from "../../middleware/checkAuth.js";
 
@@ -192,5 +193,21 @@ router.post(
   checkAuth,
   OdesaDeleteNewsController.deleteYouzhneNews
 );
+
+// Search News
+router.get(
+  "/bilgorod-dnistrovsky/search",
+  OdesaSearchNewsController.searchBilgorodDnistrovskyNews
+);
+router.get(
+  "/chornomorsk/search",
+  OdesaSearchNewsController.searchChornomorskNews
+);
+router.get("/izmail/search", OdesaSearchNewsController.searchIzmailNews);
+router.get("/kiliya/search", OdesaSearchNewsController.searchKiliyaNews);
+router.get("/odesa/search", OdesaSearchNewsController.searchOdesaNews);
+router.get("/podilsk/search", OdesaSearchNewsController.searchPodilskNews);
+router.get("/teplodar/search", OdesaSearchNewsController.searchTeplodarNews);
+router.get("/youzhne/search", OdesaSearchNewsController.searchYouzhneNews);
 
 export default router;

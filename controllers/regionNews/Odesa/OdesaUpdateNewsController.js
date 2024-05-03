@@ -1,11 +1,13 @@
-import BilgorodDnistrovsky from "../../../models/feeds/regionOdesa/bilgorod-dnistrovsky.js";
-import Chornomorsk from "../../../models/feeds/regionOdesa/chornomorsk.js";
-import Izmail from "../../../models/feeds/regionOdesa/izmail.js";
-import Kiliya from "../../../models/feeds/regionOdesa/kiliya.js";
-import Odesa from "../../../models/feeds/regionOdesa/odesa.js";
-import Podilsk from "../../../models/feeds/regionOdesa/podilsk.js";
-import Teplodar from "../../../models/feeds/regionOdesa/teplodar.js";
-import Youzhne from "../../../models/feeds/regionOdesa/youzhne.js";
+import {
+  BilgorodDnistrovsky,
+  Chornomorsk,
+  Izmail,
+  Kiliya,
+  Odesa,
+  Podilsk,
+  Teplodar,
+  Youzhne,
+} from "../../../models/feeds/regionOdesa/odesaCities.js";
 import { updateNews } from "../../../utils/news/getAllNewsByCityWithNN.js";
 
 const RegionOdesaMethods = {
@@ -25,7 +27,6 @@ for (const [methodName, Model] of Object.entries(RegionOdesaMethods)) {
   OdesaUpdateNewsController[methodName] = async (req, res) => {
     try {
       const data = req.body;
-      console.log(data);
 
       const posts = await updateNews(Model, data, res);
       return res.status(200).json(posts);

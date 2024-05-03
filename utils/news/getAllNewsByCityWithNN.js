@@ -1,4 +1,4 @@
-import { Op } from "sequelize";
+import { Op, Sequelize } from "sequelize";
 import transliteration from "transliteration";
 import NationalNews from "../../models/nationalNews.js";
 
@@ -18,7 +18,7 @@ export const getAllNewsByCityWithNN = async (Model) => {
         "mainImage",
         "mainImgDesc",
         "mainImgAuthor",
-        "UserId",
+        ["user_id", "UserId"],
       ],
       order: [["publishedAt", "DESC"]],
     });
@@ -37,7 +37,7 @@ export const getAllNewsByCityWithNN = async (Model) => {
         "mainImage",
         "mainImgDesc",
         "mainImgAuthor",
-        "UserId",
+        ["user_id", "UserId"],
       ],
       order: [["publishedAt", "DESC"]],
     });
@@ -68,7 +68,7 @@ export const getAllNewsByCity = async (Model) => {
         "mainImage",
         "mainImgDesc",
         "mainImgAuthor",
-        "UserId",
+        ["user_id", "UserId"],
       ],
       order: [["publishedAt", "DESC"]],
     });
@@ -84,9 +84,59 @@ export const GetNewsByIdOrUrl = async (Model, param) => {
   try {
     let post;
     if (!isNaN(param)) {
-      post = await Model.findOne({ where: { id: param } });
+      post = await Model.findOne({
+        where: { id: param },
+        attributes: [
+          "id",
+          "publishedAt",
+          "feed",
+          "url",
+          "postType",
+          "block",
+          "section",
+          "title",
+          "desc",
+          "showDesc",
+          "mainImage",
+          "mainImgDesc",
+          "mainImgAuthor",
+          "content",
+          "live",
+          "showAuthorDesc",
+          "showAuthor",
+          "publishOnSocialMedia",
+          "createdAt",
+          "updatedAt",
+          ["user_id", "UserId"],
+        ],
+      });
     } else {
-      post = await Model.findOne({ where: { url: param } });
+      post = await Model.findOne({
+        where: { url: param },
+        attributes: [
+          "id",
+          "publishedAt",
+          "feed",
+          "url",
+          "postType",
+          "block",
+          "section",
+          "title",
+          "desc",
+          "showDesc",
+          "mainImage",
+          "mainImgDesc",
+          "mainImgAuthor",
+          "content",
+          "live",
+          "showAuthorDesc",
+          "showAuthor",
+          "publishOnSocialMedia",
+          "createdAt",
+          "updatedAt",
+          ["user_id", "UserId"],
+        ],
+      });
     }
     if (post) {
       return post;
@@ -127,7 +177,7 @@ export const GetNewsByDate = async (Model, param) => {
         "mainImage",
         "mainImgDesc",
         "mainImgAuthor",
-        "UserId",
+        ["user_id", "UserId"],
       ],
       order: [["publishedAt", "DESC"]],
     });
@@ -208,6 +258,54 @@ export const deleteNews = async (Model, id, res) => {
     } else {
       res.status(404).json({ message: "Пост не знайдено" });
     }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Помилка серверу" });
+  }
+};
+
+export const searchNews = async (Model, req, res) => {
+  try {
+    const { query } = req.query;
+    const nationalNews = await NationalNews.findAll({
+      where: {
+        [Op.or]: [
+          Sequelize.where(
+            Sequelize.fn("LOWER", Sequelize.col("title")),
+            "LIKE",
+            `%${query.toLowerCase()}%`
+          ),
+          Sequelize.where(
+            Sequelize.fn("LOWER", Sequelize.col("desc")),
+            "LIKE",
+            `%${query.toLowerCase()}%`
+          ),
+        ],
+      },
+      order: [["publishedAt", "DESC"]],
+    });
+    const news = await Model.findAll({
+      where: {
+        [Op.or]: [
+          Sequelize.where(
+            Sequelize.fn("LOWER", Sequelize.col("title")),
+            "LIKE",
+            `%${query.toLowerCase()}%`
+          ),
+          Sequelize.where(
+            Sequelize.fn("LOWER", Sequelize.col("desc")),
+            "LIKE",
+            `%${query.toLowerCase()}%`
+          ),
+        ],
+      },
+      order: [["publishedAt", "DESC"]],
+    });
+
+    const posts = nationalNews.concat(news);
+    posts.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+
+    res.status(200).json(posts);
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Помилка серверу" });

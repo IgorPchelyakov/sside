@@ -18,14 +18,14 @@ import Vasylkiv from "../models/feeds/regionKyiv/vasylkiv.js";
 import Vyshhorod from "../models/feeds/regionKyiv/vyshhorod.js";
 import Vyshneve from "../models/feeds/regionKyiv/vyshneve.js";
 import Yagotyn from "../models/feeds/regionKyiv/yagotyn.js";
-import BilgorodDnistrovsky from "../models/feeds/regionOdesa/bilgorod-dnistrovsky.js";
-import Chornomorsk from "../models/feeds/regionOdesa/chornomorsk.js";
-import Izmail from "../models/feeds/regionOdesa/izmail.js";
-import Kiliya from "../models/feeds/regionOdesa/kiliya.js";
-import Odesa from "../models/feeds/regionOdesa/odesa.js";
-import Podilsk from "../models/feeds/regionOdesa/podilsk.js";
-import Teplodar from "../models/feeds/regionOdesa/teplodar.js";
-import Youzhne from "../models/feeds/regionOdesa/youzhne.js";
+// import BilgorodDnistrovsky from "../models/feeds/regionOdesa/bilgorod-dnistrovsky.js";
+// import Chornomorsk from "../models/feeds/regionOdesa/chornomorsk.js";
+// import Izmail from "../models/feeds/regionOdesa/izmail.js";
+// import Kiliya from "../models/feeds/regionOdesa/kiliya.js";
+// import Odesa from "../models/feeds/regionOdesa/odesa.js";
+// import Podilsk from "../models/feeds/regionOdesa/podilsk.js";
+// import Teplodar from "../models/feeds/regionOdesa/teplodar.js";
+// import Youzhne from "../models/feeds/regionOdesa/youzhne.js";
 import NationalNews from "../models/nationalNews.js";
 import Topic from "../models/topic.js";
 import User from "../models/user.js";
@@ -1459,172 +1459,6 @@ const NewsController = {
       res.status(500).json({ message: "Помилка сервера" });
     }
   },
-  // Odesa Region
-  getAllBilgorodDnistrovskyNewsByDate: async (req, res) => {
-    const { date } = req.params;
-    const startDate = new Date(date);
-    const endDate = new Date(date);
-    endDate.setDate(endDate.getDate() + 1);
-
-    try {
-      const posts = await BilgorodDnistrovsky.findAll({
-        where: {
-          publishedAt: {
-            [Op.between]: [startDate, endDate],
-          },
-        },
-        order: [["publishedAt", "DESC"]],
-      });
-      res.status(200).json(posts);
-    } catch (error) {
-      console.log(error);
-      res.status(500).json({ message: "Помилка сервера" });
-    }
-  },
-  getAllChornomorskNewsByDate: async (req, res) => {
-    const { date } = req.params;
-    const startDate = new Date(date);
-    const endDate = new Date(date);
-    endDate.setDate(endDate.getDate() + 1);
-
-    try {
-      const posts = await Chornomorsk.findAll({
-        where: {
-          publishedAt: {
-            [Op.between]: [startDate, endDate],
-          },
-        },
-        order: [["publishedAt", "DESC"]],
-      });
-      res.status(200).json(posts);
-    } catch (error) {
-      console.log(error);
-      res.status(500).json({ message: "Помилка сервера" });
-    }
-  },
-  getAllIzmailNewsByDate: async (req, res) => {
-    const { date } = req.params;
-    const startDate = new Date(date);
-    const endDate = new Date(date);
-    endDate.setDate(endDate.getDate() + 1);
-
-    try {
-      const posts = await Izmail.findAll({
-        where: {
-          publishedAt: {
-            [Op.between]: [startDate, endDate],
-          },
-        },
-        order: [["publishedAt", "DESC"]],
-      });
-      res.status(200).json(posts);
-    } catch (error) {
-      console.log(error);
-      res.status(500).json({ message: "Помилка сервера" });
-    }
-  },
-  getAllKiliyaNewsByDate: async (req, res) => {
-    const { date } = req.params;
-    const startDate = new Date(date);
-    const endDate = new Date(date);
-    endDate.setDate(endDate.getDate() + 1);
-
-    try {
-      const posts = await Kiliya.findAll({
-        where: {
-          publishedAt: {
-            [Op.between]: [startDate, endDate],
-          },
-        },
-        order: [["publishedAt", "DESC"]],
-      });
-      res.status(200).json(posts);
-    } catch (error) {
-      console.log(error);
-      res.status(500).json({ message: "Помилка сервера" });
-    }
-  },
-  //   const param = req.params.param;
-  //   try {
-  //     let post;
-  //     if (!isNaN(param)) {
-  //       post = await Odesa.findOne({ where: { id: param } });
-  //     } else {
-  //       post = await Odesa.findOne({ where: { url: param } });
-  //     }
-  //     if (post) {
-  //       res.status(200).json(post);
-  //     } else {
-  //       res.status(404).json({ message: "Post not found" });
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //     res.status(500).json({ message: "Server error" });
-  //   }
-  // },
-  getAllOdesaNewsByDate: async (req, res) => {
-    const { date } = req.params;
-    const startDate = new Date(date);
-    const endDate = new Date(date);
-    endDate.setDate(endDate.getDate() + 1);
-
-    try {
-      const posts = await Odesa.findAll({
-        where: {
-          publishedAt: {
-            [Op.between]: [startDate, endDate],
-          },
-        },
-        order: [["publishedAt", "DESC"]],
-      });
-      res.status(200).json(posts);
-    } catch (error) {
-      console.log(error);
-      res.status(500).json({ message: "Помилка сервера" });
-    }
-  },
-  getAllPodilskNewsByDate: async (req, res) => {
-    const { date } = req.params;
-    const startDate = new Date(date);
-    const endDate = new Date(date);
-    endDate.setDate(endDate.getDate() + 1);
-
-    try {
-      const posts = await Podilsk.findAll({
-        where: {
-          publishedAt: {
-            [Op.between]: [startDate, endDate],
-          },
-        },
-        order: [["publishedAt", "DESC"]],
-      });
-      res.status(200).json(posts);
-    } catch (error) {
-      console.log(error);
-      res.status(500).json({ message: "Помилка сервера" });
-    }
-  },
-  getAllYouzhneNewsByDate: async (req, res) => {
-    const { date } = req.params;
-    const startDate = new Date(date);
-    const endDate = new Date(date);
-    endDate.setDate(endDate.getDate() + 1);
-
-    try {
-      const posts = await Youzhne.findAll({
-        where: {
-          publishedAt: {
-            [Op.between]: [startDate, endDate],
-          },
-        },
-        order: [["publishedAt", "DESC"]],
-      });
-      res.status(200).json(posts);
-    } catch (error) {
-      console.log(error);
-      res.status(500).json({ message: "Помилка сервера" });
-    }
-  },
   addNews: async (req, res) => {
     const postData = req.body;
     try {
@@ -2948,478 +2782,478 @@ const NewsController = {
       res.status(500).json({ message: "Server error" });
     }
   },
-  updateBilgorodDnistrovskyNews: async (req, res) => {
-    const {
-      id,
-      publishedAt,
-      postType,
-      block,
-      section,
-      title,
-      desc,
-      showDesc,
-      mainImage,
-      mainImgDesc,
-      mainImgAuthor,
-      imageSize,
-      content,
-      live,
-      showAuthorDesc,
-      showAuthor,
-      publishOnSocialMedia,
-      UserId,
-    } = req.body;
-    try {
-      const url = transliteration.slugify(title);
-      const post = await BilgorodDnistrovsky.update(
-        {
-          publishedAt,
-          postType,
-          block,
-          section,
-          title,
-          url,
-          desc,
-          showDesc,
-          mainImage,
-          mainImgDesc,
-          mainImgAuthor,
-          imageSize,
-          content,
-          live,
-          showAuthorDesc,
-          showAuthor,
-          publishOnSocialMedia,
-          UserId,
-        },
-        {
-          where: { id },
-        }
-      );
+  // updateBilgorodDnistrovskyNews: async (req, res) => {
+  //   const {
+  //     id,
+  //     publishedAt,
+  //     postType,
+  //     block,
+  //     section,
+  //     title,
+  //     desc,
+  //     showDesc,
+  //     mainImage,
+  //     mainImgDesc,
+  //     mainImgAuthor,
+  //     imageSize,
+  //     content,
+  //     live,
+  //     showAuthorDesc,
+  //     showAuthor,
+  //     publishOnSocialMedia,
+  //     UserId,
+  //   } = req.body;
+  //   try {
+  //     const url = transliteration.slugify(title);
+  //     const post = await BilgorodDnistrovsky.update(
+  //       {
+  //         publishedAt,
+  //         postType,
+  //         block,
+  //         section,
+  //         title,
+  //         url,
+  //         desc,
+  //         showDesc,
+  //         mainImage,
+  //         mainImgDesc,
+  //         mainImgAuthor,
+  //         imageSize,
+  //         content,
+  //         live,
+  //         showAuthorDesc,
+  //         showAuthor,
+  //         publishOnSocialMedia,
+  //         UserId,
+  //       },
+  //       {
+  //         where: { id },
+  //       }
+  //     );
 
-      if (post[0]) {
-        res.status(200).json({ message: "Post updated" });
-      } else {
-        res.status(404).json({ message: "Post not found" });
-      }
-    } catch (error) {
-      console.log(error);
-      res.status(500).json({ message: "Server error" });
-    }
-  },
-  updateChornomorskNews: async (req, res) => {
-    const {
-      id,
-      publishedAt,
-      postType,
-      block,
-      section,
-      title,
-      desc,
-      showDesc,
-      mainImage,
-      mainImgDesc,
-      mainImgAuthor,
-      imageSize,
-      content,
-      live,
-      showAuthorDesc,
-      showAuthor,
-      publishOnSocialMedia,
-      UserId,
-    } = req.body;
-    try {
-      const url = transliteration.slugify(title);
-      const post = await Chornomorsk.update(
-        {
-          publishedAt,
-          postType,
-          block,
-          section,
-          title,
-          url,
-          desc,
-          showDesc,
-          mainImage,
-          mainImgDesc,
-          mainImgAuthor,
-          imageSize,
-          content,
-          live,
-          showAuthorDesc,
-          showAuthor,
-          publishOnSocialMedia,
-          UserId,
-        },
-        {
-          where: { id },
-        }
-      );
+  //     if (post[0]) {
+  //       res.status(200).json({ message: "Post updated" });
+  //     } else {
+  //       res.status(404).json({ message: "Post not found" });
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //     res.status(500).json({ message: "Server error" });
+  //   }
+  // },
+  // updateChornomorskNews: async (req, res) => {
+  //   const {
+  //     id,
+  //     publishedAt,
+  //     postType,
+  //     block,
+  //     section,
+  //     title,
+  //     desc,
+  //     showDesc,
+  //     mainImage,
+  //     mainImgDesc,
+  //     mainImgAuthor,
+  //     imageSize,
+  //     content,
+  //     live,
+  //     showAuthorDesc,
+  //     showAuthor,
+  //     publishOnSocialMedia,
+  //     UserId,
+  //   } = req.body;
+  //   try {
+  //     const url = transliteration.slugify(title);
+  //     const post = await Chornomorsk.update(
+  //       {
+  //         publishedAt,
+  //         postType,
+  //         block,
+  //         section,
+  //         title,
+  //         url,
+  //         desc,
+  //         showDesc,
+  //         mainImage,
+  //         mainImgDesc,
+  //         mainImgAuthor,
+  //         imageSize,
+  //         content,
+  //         live,
+  //         showAuthorDesc,
+  //         showAuthor,
+  //         publishOnSocialMedia,
+  //         UserId,
+  //       },
+  //       {
+  //         where: { id },
+  //       }
+  //     );
 
-      if (post[0]) {
-        res.status(200).json({ message: "Post updated" });
-      } else {
-        res.status(404).json({ message: "Post not found" });
-      }
-    } catch (error) {
-      console.log(error);
-      res.status(500).json({ message: "Server error" });
-    }
-  },
-  updateIzmailNews: async (req, res) => {
-    const {
-      id,
-      publishedAt,
-      postType,
-      block,
-      section,
-      title,
-      desc,
-      showDesc,
-      mainImage,
-      mainImgDesc,
-      mainImgAuthor,
-      imageSize,
-      content,
-      live,
-      showAuthorDesc,
-      showAuthor,
-      publishOnSocialMedia,
-      UserId,
-    } = req.body;
-    try {
-      const url = transliteration.slugify(title);
-      const post = await Izmail.update(
-        {
-          publishedAt,
-          postType,
-          block,
-          section,
-          title,
-          url,
-          desc,
-          showDesc,
-          mainImage,
-          mainImgDesc,
-          mainImgAuthor,
-          imageSize,
-          content,
-          live,
-          showAuthorDesc,
-          showAuthor,
-          publishOnSocialMedia,
-          UserId,
-        },
-        {
-          where: { id },
-        }
-      );
+  //     if (post[0]) {
+  //       res.status(200).json({ message: "Post updated" });
+  //     } else {
+  //       res.status(404).json({ message: "Post not found" });
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //     res.status(500).json({ message: "Server error" });
+  //   }
+  // },
+  // updateIzmailNews: async (req, res) => {
+  //   const {
+  //     id,
+  //     publishedAt,
+  //     postType,
+  //     block,
+  //     section,
+  //     title,
+  //     desc,
+  //     showDesc,
+  //     mainImage,
+  //     mainImgDesc,
+  //     mainImgAuthor,
+  //     imageSize,
+  //     content,
+  //     live,
+  //     showAuthorDesc,
+  //     showAuthor,
+  //     publishOnSocialMedia,
+  //     UserId,
+  //   } = req.body;
+  //   try {
+  //     const url = transliteration.slugify(title);
+  //     const post = await Izmail.update(
+  //       {
+  //         publishedAt,
+  //         postType,
+  //         block,
+  //         section,
+  //         title,
+  //         url,
+  //         desc,
+  //         showDesc,
+  //         mainImage,
+  //         mainImgDesc,
+  //         mainImgAuthor,
+  //         imageSize,
+  //         content,
+  //         live,
+  //         showAuthorDesc,
+  //         showAuthor,
+  //         publishOnSocialMedia,
+  //         UserId,
+  //       },
+  //       {
+  //         where: { id },
+  //       }
+  //     );
 
-      if (post[0]) {
-        res.status(200).json({ message: "Post updated" });
-      } else {
-        res.status(404).json({ message: "Post not found" });
-      }
-    } catch (error) {
-      console.log(error);
-      res.status(500).json({ message: "Server error" });
-    }
-  },
-  updateKiliyaNews: async (req, res) => {
-    const {
-      id,
-      publishedAt,
-      postType,
-      block,
-      section,
-      title,
-      desc,
-      showDesc,
-      mainImage,
-      mainImgDesc,
-      mainImgAuthor,
-      imageSize,
-      content,
-      live,
-      showAuthorDesc,
-      showAuthor,
-      publishOnSocialMedia,
-      UserId,
-    } = req.body;
-    try {
-      const url = transliteration.slugify(title);
-      const post = await Kiliya.update(
-        {
-          publishedAt,
-          postType,
-          block,
-          section,
-          title,
-          url,
-          desc,
-          showDesc,
-          mainImage,
-          mainImgDesc,
-          mainImgAuthor,
-          imageSize,
-          content,
-          live,
-          showAuthorDesc,
-          showAuthor,
-          publishOnSocialMedia,
-          UserId,
-        },
-        {
-          where: { id },
-        }
-      );
+  //     if (post[0]) {
+  //       res.status(200).json({ message: "Post updated" });
+  //     } else {
+  //       res.status(404).json({ message: "Post not found" });
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //     res.status(500).json({ message: "Server error" });
+  //   }
+  // },
+  // updateKiliyaNews: async (req, res) => {
+  //   const {
+  //     id,
+  //     publishedAt,
+  //     postType,
+  //     block,
+  //     section,
+  //     title,
+  //     desc,
+  //     showDesc,
+  //     mainImage,
+  //     mainImgDesc,
+  //     mainImgAuthor,
+  //     imageSize,
+  //     content,
+  //     live,
+  //     showAuthorDesc,
+  //     showAuthor,
+  //     publishOnSocialMedia,
+  //     UserId,
+  //   } = req.body;
+  //   try {
+  //     const url = transliteration.slugify(title);
+  //     const post = await Kiliya.update(
+  //       {
+  //         publishedAt,
+  //         postType,
+  //         block,
+  //         section,
+  //         title,
+  //         url,
+  //         desc,
+  //         showDesc,
+  //         mainImage,
+  //         mainImgDesc,
+  //         mainImgAuthor,
+  //         imageSize,
+  //         content,
+  //         live,
+  //         showAuthorDesc,
+  //         showAuthor,
+  //         publishOnSocialMedia,
+  //         UserId,
+  //       },
+  //       {
+  //         where: { id },
+  //       }
+  //     );
 
-      if (post[0]) {
-        res.status(200).json({ message: "Post updated" });
-      } else {
-        res.status(404).json({ message: "Post not found" });
-      }
-    } catch (error) {
-      console.log(error);
-      res.status(500).json({ message: "Server error" });
-    }
-  },
-  updateOdesaNews: async (req, res) => {
-    const {
-      id,
-      publishedAt,
-      postType,
-      block,
-      section,
-      title,
-      desc,
-      showDesc,
-      mainImage,
-      mainImgDesc,
-      mainImgAuthor,
-      imageSize,
-      content,
-      live,
-      showAuthorDesc,
-      showAuthor,
-      publishOnSocialMedia,
-      UserId,
-    } = req.body;
-    try {
-      const url = transliteration.slugify(title);
-      const post = await Odesa.update(
-        {
-          publishedAt,
-          postType,
-          block,
-          section,
-          title,
-          url,
-          desc,
-          showDesc,
-          mainImage,
-          mainImgDesc,
-          mainImgAuthor,
-          imageSize,
-          content,
-          live,
-          showAuthorDesc,
-          showAuthor,
-          publishOnSocialMedia,
-          UserId,
-        },
-        {
-          where: { id },
-        }
-      );
+  //     if (post[0]) {
+  //       res.status(200).json({ message: "Post updated" });
+  //     } else {
+  //       res.status(404).json({ message: "Post not found" });
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //     res.status(500).json({ message: "Server error" });
+  //   }
+  // },
+  // updateOdesaNews: async (req, res) => {
+  //   const {
+  //     id,
+  //     publishedAt,
+  //     postType,
+  //     block,
+  //     section,
+  //     title,
+  //     desc,
+  //     showDesc,
+  //     mainImage,
+  //     mainImgDesc,
+  //     mainImgAuthor,
+  //     imageSize,
+  //     content,
+  //     live,
+  //     showAuthorDesc,
+  //     showAuthor,
+  //     publishOnSocialMedia,
+  //     UserId,
+  //   } = req.body;
+  //   try {
+  //     const url = transliteration.slugify(title);
+  //     const post = await Odesa.update(
+  //       {
+  //         publishedAt,
+  //         postType,
+  //         block,
+  //         section,
+  //         title,
+  //         url,
+  //         desc,
+  //         showDesc,
+  //         mainImage,
+  //         mainImgDesc,
+  //         mainImgAuthor,
+  //         imageSize,
+  //         content,
+  //         live,
+  //         showAuthorDesc,
+  //         showAuthor,
+  //         publishOnSocialMedia,
+  //         UserId,
+  //       },
+  //       {
+  //         where: { id },
+  //       }
+  //     );
 
-      if (post[0]) {
-        res.status(200).json({ message: "Post updated" });
-      } else {
-        res.status(404).json({ message: "Post not found" });
-      }
-    } catch (error) {
-      console.log(error);
-      res.status(500).json({ message: "Server error" });
-    }
-  },
-  updatePodilskNews: async (req, res) => {
-    const {
-      id,
-      publishedAt,
-      postType,
-      block,
-      section,
-      title,
-      desc,
-      showDesc,
-      mainImage,
-      mainImgDesc,
-      mainImgAuthor,
-      imageSize,
-      content,
-      live,
-      showAuthorDesc,
-      showAuthor,
-      publishOnSocialMedia,
-      UserId,
-    } = req.body;
-    try {
-      const url = transliteration.slugify(title);
-      const post = await Podilsk.update(
-        {
-          publishedAt,
-          postType,
-          block,
-          section,
-          title,
-          url,
-          desc,
-          showDesc,
-          mainImage,
-          mainImgDesc,
-          mainImgAuthor,
-          imageSize,
-          content,
-          live,
-          showAuthorDesc,
-          showAuthor,
-          publishOnSocialMedia,
-          UserId,
-        },
-        {
-          where: { id },
-        }
-      );
+  //     if (post[0]) {
+  //       res.status(200).json({ message: "Post updated" });
+  //     } else {
+  //       res.status(404).json({ message: "Post not found" });
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //     res.status(500).json({ message: "Server error" });
+  //   }
+  // },
+  // updatePodilskNews: async (req, res) => {
+  //   const {
+  //     id,
+  //     publishedAt,
+  //     postType,
+  //     block,
+  //     section,
+  //     title,
+  //     desc,
+  //     showDesc,
+  //     mainImage,
+  //     mainImgDesc,
+  //     mainImgAuthor,
+  //     imageSize,
+  //     content,
+  //     live,
+  //     showAuthorDesc,
+  //     showAuthor,
+  //     publishOnSocialMedia,
+  //     UserId,
+  //   } = req.body;
+  //   try {
+  //     const url = transliteration.slugify(title);
+  //     const post = await Podilsk.update(
+  //       {
+  //         publishedAt,
+  //         postType,
+  //         block,
+  //         section,
+  //         title,
+  //         url,
+  //         desc,
+  //         showDesc,
+  //         mainImage,
+  //         mainImgDesc,
+  //         mainImgAuthor,
+  //         imageSize,
+  //         content,
+  //         live,
+  //         showAuthorDesc,
+  //         showAuthor,
+  //         publishOnSocialMedia,
+  //         UserId,
+  //       },
+  //       {
+  //         where: { id },
+  //       }
+  //     );
 
-      if (post[0]) {
-        res.status(200).json({ message: "Post updated" });
-      } else {
-        res.status(404).json({ message: "Post not found" });
-      }
-    } catch (error) {
-      console.log(error);
-      res.status(500).json({ message: "Server error" });
-    }
-  },
-  updateTeplodarNews: async (req, res) => {
-    const {
-      id,
-      publishedAt,
-      postType,
-      block,
-      section,
-      title,
-      desc,
-      showDesc,
-      mainImage,
-      mainImgDesc,
-      mainImgAuthor,
-      imageSize,
-      content,
-      live,
-      showAuthorDesc,
-      showAuthor,
-      publishOnSocialMedia,
-      UserId,
-    } = req.body;
-    try {
-      const url = transliteration.slugify(title);
-      const post = await Teplodar.update(
-        {
-          publishedAt,
-          postType,
-          block,
-          section,
-          title,
-          url,
-          desc,
-          showDesc,
-          mainImage,
-          mainImgDesc,
-          mainImgAuthor,
-          imageSize,
-          content,
-          live,
-          showAuthorDesc,
-          showAuthor,
-          publishOnSocialMedia,
-          UserId,
-        },
-        {
-          where: { id },
-        }
-      );
+  //     if (post[0]) {
+  //       res.status(200).json({ message: "Post updated" });
+  //     } else {
+  //       res.status(404).json({ message: "Post not found" });
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //     res.status(500).json({ message: "Server error" });
+  //   }
+  // },
+  // updateTeplodarNews: async (req, res) => {
+  //   const {
+  //     id,
+  //     publishedAt,
+  //     postType,
+  //     block,
+  //     section,
+  //     title,
+  //     desc,
+  //     showDesc,
+  //     mainImage,
+  //     mainImgDesc,
+  //     mainImgAuthor,
+  //     imageSize,
+  //     content,
+  //     live,
+  //     showAuthorDesc,
+  //     showAuthor,
+  //     publishOnSocialMedia,
+  //     UserId,
+  //   } = req.body;
+  //   try {
+  //     const url = transliteration.slugify(title);
+  //     const post = await Teplodar.update(
+  //       {
+  //         publishedAt,
+  //         postType,
+  //         block,
+  //         section,
+  //         title,
+  //         url,
+  //         desc,
+  //         showDesc,
+  //         mainImage,
+  //         mainImgDesc,
+  //         mainImgAuthor,
+  //         imageSize,
+  //         content,
+  //         live,
+  //         showAuthorDesc,
+  //         showAuthor,
+  //         publishOnSocialMedia,
+  //         UserId,
+  //       },
+  //       {
+  //         where: { id },
+  //       }
+  //     );
 
-      if (post[0]) {
-        res.status(200).json({ message: "Post updated" });
-      } else {
-        res.status(404).json({ message: "Post not found" });
-      }
-    } catch (error) {
-      console.log(error);
-      res.status(500).json({ message: "Server error" });
-    }
-  },
-  updateYouzhneNews: async (req, res) => {
-    const {
-      id,
-      publishedAt,
-      postType,
-      block,
-      section,
-      title,
-      desc,
-      showDesc,
-      mainImage,
-      mainImgDesc,
-      mainImgAuthor,
-      imageSize,
-      content,
-      live,
-      showAuthorDesc,
-      showAuthor,
-      publishOnSocialMedia,
-      UserId,
-    } = req.body;
-    try {
-      const url = transliteration.slugify(title);
-      const post = await Youzhne.update(
-        {
-          publishedAt,
-          postType,
-          block,
-          section,
-          title,
-          url,
-          desc,
-          showDesc,
-          mainImage,
-          mainImgDesc,
-          mainImgAuthor,
-          imageSize,
-          content,
-          live,
-          showAuthorDesc,
-          showAuthor,
-          publishOnSocialMedia,
-          UserId,
-        },
-        {
-          where: { id },
-        }
-      );
+  //     if (post[0]) {
+  //       res.status(200).json({ message: "Post updated" });
+  //     } else {
+  //       res.status(404).json({ message: "Post not found" });
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //     res.status(500).json({ message: "Server error" });
+  //   }
+  // },
+  // updateYouzhneNews: async (req, res) => {
+  //   const {
+  //     id,
+  //     publishedAt,
+  //     postType,
+  //     block,
+  //     section,
+  //     title,
+  //     desc,
+  //     showDesc,
+  //     mainImage,
+  //     mainImgDesc,
+  //     mainImgAuthor,
+  //     imageSize,
+  //     content,
+  //     live,
+  //     showAuthorDesc,
+  //     showAuthor,
+  //     publishOnSocialMedia,
+  //     UserId,
+  //   } = req.body;
+  //   try {
+  //     const url = transliteration.slugify(title);
+  //     const post = await Youzhne.update(
+  //       {
+  //         publishedAt,
+  //         postType,
+  //         block,
+  //         section,
+  //         title,
+  //         url,
+  //         desc,
+  //         showDesc,
+  //         mainImage,
+  //         mainImgDesc,
+  //         mainImgAuthor,
+  //         imageSize,
+  //         content,
+  //         live,
+  //         showAuthorDesc,
+  //         showAuthor,
+  //         publishOnSocialMedia,
+  //         UserId,
+  //       },
+  //       {
+  //         where: { id },
+  //       }
+  //     );
 
-      if (post[0]) {
-        res.status(200).json({ message: "Post updated" });
-      } else {
-        res.status(404).json({ message: "Post not found" });
-      }
-    } catch (error) {
-      console.log(error);
-      res.status(500).json({ message: "Server error" });
-    }
-  },
+  //     if (post[0]) {
+  //       res.status(200).json({ message: "Post updated" });
+  //     } else {
+  //       res.status(404).json({ message: "Post not found" });
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //     res.status(500).json({ message: "Server error" });
+  //   }
+  // },
   deleteNews: async (req, res) => {
     const id = req.params.id;
     try {

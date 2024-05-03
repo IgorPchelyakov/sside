@@ -1,3 +1,4 @@
+import { DataTypes } from "sequelize";
 import sequelize from "../../DBConnect.js";
 
 const NewsModel = (modelName) => {
@@ -87,6 +88,10 @@ const NewsModel = (modelName) => {
         type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: false,
+      },
+      user_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
       },
     },
     {
