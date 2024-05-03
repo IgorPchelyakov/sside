@@ -12,23 +12,35 @@ import Sinelnikovo from "../models/feeds/regionDnipro/sinelnikovo.js";
 import Ternivka from "../models/feeds/regionDnipro/ternivka.js";
 import Vilnohorsk from "../models/feeds/regionDnipro/vilnohorsk.js";
 import ZhovtiVody from "../models/feeds/regionDnipro/zhovti-vody.js";
-import Berezan from "../models/feeds/regionKyiv/berezan.js";
-import Bilacerkva from "../models/feeds/regionKyiv/bilacerkva.js";
-import Boryspil from "../models/feeds/regionKyiv/boryspil.js";
-import Boyarka from "../models/feeds/regionKyiv/boyarka.js";
-import Brovary from "../models/feeds/regionKyiv/brovary.js";
-import Bucha from "../models/feeds/regionKyiv/bucha.js";
-import Fastiv from "../models/feeds/regionKyiv/fastiv.js";
-import Irpin from "../models/feeds/regionKyiv/irpin.js";
-import Kyiv from "../models/feeds/regionKyiv/kyiv.js";
-import Obukhiv from "../models/feeds/regionKyiv/obukhiv.js";
-import Pereyaslav from "../models/feeds/regionKyiv/pereyaslav.js";
-import Skvyra from "../models/feeds/regionKyiv/skvyra.js";
-import Slavutych from "../models/feeds/regionKyiv/slavutych.js";
-import Vasylkiv from "../models/feeds/regionKyiv/vasylkiv.js";
-import Vyshhorod from "../models/feeds/regionKyiv/vyshhorod.js";
-import Vyshneve from "../models/feeds/regionKyiv/vyshneve.js";
-import Yagotyn from "../models/feeds/regionKyiv/yagotyn.js";
+import {
+  Berezan,
+  Bilacerkva,
+  Boryspil,
+  Boyarka,
+  Brovary,
+  Bucha,
+  Fastiv,
+  Irpin,
+  Kyiv,
+  Obukhiv,
+  Pereyaslav,
+  Skvyra,
+  Slavutych,
+  Vasylkiv,
+  Vyshhorod,
+  Vyshneve,
+  Yagotyn,
+} from "../models/feeds/regionKyiv/kyivCities.js";
+import {
+  BilgorodDnistrovsky,
+  Chornomorsk,
+  Izmail,
+  Kiliya,
+  Odesa,
+  Podilsk,
+  Teplodar,
+  Youzhne,
+} from "../models/feeds/regionOdesa/odesaCities.js";
 import NationalNews from "../models/nationalNews.js";
 
 const models = {
@@ -52,14 +64,14 @@ const models = {
   Вишневе: Vyshneve,
   Яготин: Yagotyn,
   // Odesa region
-  // "Білгород-Дністровський": BilgorodDnistrovsky,
-  // Чорноморськ: Chornomorsk,
-  // Ізмаїл: Izmail,
-  // Кілія: Kiliya,
-  // Одеса: Odesa,
-  // Подільськ: Podilsk,
-  // Теплодар: Teplodar,
-  // Южне: Youzhne,
+  "Білгород-Дністровський": BilgorodDnistrovsky,
+  Чорноморськ: Chornomorsk,
+  Ізмаїл: Izmail,
+  Кілія: Kiliya,
+  Одеса: Odesa,
+  Подільськ: Podilsk,
+  Теплодар: Teplodar,
+  Южне: Youzhne,
   // Dnipro region
   Дніпро: Dnipro,
   "Кривий Ріг": KryvyiRih,

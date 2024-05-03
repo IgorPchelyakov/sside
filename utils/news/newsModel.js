@@ -89,10 +89,6 @@ const NewsModel = (modelName) => {
         allowNull: false,
         defaultValue: false,
       },
-      user_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
     },
     {
       sequelize,

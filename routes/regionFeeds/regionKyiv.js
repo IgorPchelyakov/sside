@@ -1,343 +1,435 @@
 import { Router } from "express";
-import NewsController from "../../controllers/newsController.js";
+import KyivDeleteNewsController from "../../controllers/regionNews/Kyiv/KyivDeleteNewsController.js";
+import KyivGetAllNewsController from "../../controllers/regionNews/Kyiv/KyivGetAllNewsController.js";
+import KyivGetAllNewsWithNNController from "../../controllers/regionNews/Kyiv/KyivGetAllNewsWithNNController.js";
+import KyivGetNewsByDateController from "../../controllers/regionNews/Kyiv/KyivGetNewsByDateController.js";
+import KyivGetNewsByIdOrUrlController from "../../controllers/regionNews/Kyiv/KyivGetNewsByIdOrUrlController.js";
+import KyivSearchNewsController from "../../controllers/regionNews/Kyiv/KyivSearchNewsController.js";
+import KyivUpdateNewsController from "../../controllers/regionNews/Kyiv/KyivUpdateNewsController.js";
 import { checkAuth } from "../../middleware/checkAuth.js";
 
 const router = Router();
 
-router.get("/berezan/news", NewsController.getAllBerezanNews);
+// GetAllNews
+router.get("/kyiv/news", KyivGetAllNewsController.getAllKyivNews);
+router.get("/berezan/news", KyivGetAllNewsController.getAllBerezanNews);
+router.get("/bilacerkva/news", KyivGetAllNewsController.getAllBilacerkvaNews);
+router.get("/boryspil/news", KyivGetAllNewsController.getAllBoryspilNews);
+router.get("/boyarka/news", KyivGetAllNewsController.getAllBoyarkaNews);
+router.get("/brovary/news", KyivGetAllNewsController.getAllBrovaryNews);
+router.get("/bucha/news", KyivGetAllNewsController.getAllBuchaNews);
+router.get("/fastiv/news", KyivGetAllNewsController.getAllFastivNews);
+router.get("/irpin/news", KyivGetAllNewsController.getAllIrpinNews);
+router.get("/obukhiv/news", KyivGetAllNewsController.getAllObukhivNews);
+router.get("/pereyaslav/news", KyivGetAllNewsController.getAllPereyaslavNews);
+router.get("/skvyra/news", KyivGetAllNewsController.getAllSkvyraNews);
+router.get("/slavutych/news", KyivGetAllNewsController.getAllSlavutychNews);
+router.get("/vasylkiv/news", KyivGetAllNewsController.getAllVasylkivNews);
+router.get("/vyshhorod/news", KyivGetAllNewsController.getAllVyshhorodNews);
+router.get("/vyshneve/news", KyivGetAllNewsController.getAllVyshneveNews);
+router.get("/yagotyn/news", KyivGetAllNewsController.getAllYagotynNews);
+
+// Get All News With NN
 router.get(
-  "/berezan/with-national-news",
-  NewsController.getAllBerezanWithNationalNews
+  "/kyiv/with-nn",
+  KyivGetAllNewsWithNNController.getAllKyivNewsWithNN
 );
-router.get("/berezan/news/:param", NewsController.getBerezanNewsByIdOrUrl);
 router.get(
-  "/berezan/news/news-today/:date",
-  NewsController.getAllBerezanNewsByDate
+  "/berezan/with-nn",
+  KyivGetAllNewsWithNNController.getAllBerezanNewsWithNN
+);
+router.get(
+  "/bilacerkva/with-nn",
+  KyivGetAllNewsWithNNController.getAllBilacerkvaNewsWithNN
+);
+router.get(
+  "/boryspil/with-nn",
+  KyivGetAllNewsWithNNController.getAllBoryspilNewsWithNN
+);
+router.get(
+  "/boyarka/with-nn",
+  KyivGetAllNewsWithNNController.getAllBoyarkaNewsWithNN
+);
+router.get(
+  "/brovary/with-nn",
+  KyivGetAllNewsWithNNController.getAllBrovaryNewsWithNN
+);
+router.get(
+  "/bucha/with-nn",
+  KyivGetAllNewsWithNNController.getAllBuchaNewsWithNN
+);
+router.get(
+  "/fastiv/with-nn",
+  KyivGetAllNewsWithNNController.getAllFastivNewsWithNN
+);
+router.get(
+  "/irpin/with-nn",
+  KyivGetAllNewsWithNNController.getAllIrpinNewsWithNN
+);
+router.get(
+  "/obukhiv/with-nn",
+  KyivGetAllNewsWithNNController.getAllObukhivNewsWithNN
+);
+router.get(
+  "/pereyaslav/with-nn",
+  KyivGetAllNewsWithNNController.getAllPereyaslavNewsWithNN
+);
+router.get(
+  "/skvyra/with-nn",
+  KyivGetAllNewsWithNNController.getAllSkvyraNewsWithNN
+);
+router.get(
+  "/slavutych/with-nn",
+  KyivGetAllNewsWithNNController.getAllSlavutychNewsWithNN
+);
+router.get(
+  "/vasylkiv/with-nn",
+  KyivGetAllNewsWithNNController.getAllVasylkivNewsWithNN
+);
+router.get(
+  "/vyshhorod/with-nn",
+  KyivGetAllNewsWithNNController.getAllVyshhorodNewsWithNN
+);
+router.get(
+  "/vyshneve/with-nn",
+  KyivGetAllNewsWithNNController.getAllVyshneveNewsWithNN
+);
+router.get(
+  "/yagotyn/with-nn",
+  KyivGetAllNewsWithNNController.getAllYagotynNewsWithNN
+);
+
+// Get News By Id Or Url
+router.get(
+  "/kyiv/news/:param",
+  KyivGetNewsByIdOrUrlController.getKyivNewsByIdOrUrl
+);
+router.get(
+  "/berezan/news/:param",
+  KyivGetNewsByIdOrUrlController.getBerezanNewsByIdOrUrl
+);
+router.get(
+  "/bilacerkva/news/:param",
+  KyivGetNewsByIdOrUrlController.getBilacerkvaNewsByIdOrUrl
+);
+router.get(
+  "/boryspil/news/:param",
+  KyivGetNewsByIdOrUrlController.getBoryspilNewsByIdOrUrl
+);
+router.get(
+  "/boyarka/news/:param",
+  KyivGetNewsByIdOrUrlController.getBoyarkaNewsByIdOrUrl
+);
+router.get(
+  "/brovary/news/:param",
+  KyivGetNewsByIdOrUrlController.getBrovaryNewsByIdOrUrl
+);
+router.get(
+  "/bucha/news/:param",
+  KyivGetNewsByIdOrUrlController.getBuchaNewsByIdOrUrl
+);
+router.get(
+  "/fastiv/news/:param",
+  KyivGetNewsByIdOrUrlController.getFastivNewsByIdOrUrl
+);
+router.get(
+  "/irpin/news/:param",
+  KyivGetNewsByIdOrUrlController.getIrpinNewsByIdOrUrl
+);
+router.get(
+  "/obukhiv/news/:param",
+  KyivGetNewsByIdOrUrlController.getObukhivNewsByIdOrUrl
+);
+router.get(
+  "/pereyaslav/news/:param",
+  KyivGetNewsByIdOrUrlController.getPereyaslavNewsByIdOrUrl
+);
+router.get(
+  "/skvyra/news/:param",
+  KyivGetNewsByIdOrUrlController.getSkvyraNewsByIdOrUrl
+);
+router.get(
+  "/slavutych/news/:param",
+  KyivGetNewsByIdOrUrlController.getSlavutychNewsByIdOrUrl
+);
+router.get(
+  "/vasylkiv/news/:param",
+  KyivGetNewsByIdOrUrlController.getVasylkivNewsByIdOrUrl
+);
+router.get(
+  "/vyshhorod/news/:param",
+  KyivGetNewsByIdOrUrlController.getVyshhorodNewsByIdOrUrl
+);
+router.get(
+  "/vyshneve/news/:param",
+  KyivGetNewsByIdOrUrlController.getVyshneveNewsByIdOrUrl
+);
+router.get(
+  "/yagotyn/news/:param",
+  KyivGetNewsByIdOrUrlController.getYagotynNewsByIdOrUrl
+);
+
+// Get All News By Date
+router.get(
+  "/kyiv/news-today/:date",
+  KyivGetNewsByDateController.getKyivNewsByDate
+);
+router.get(
+  "/berezan/news-today/:date",
+  KyivGetNewsByDateController.getBerezanNewsByDate
+);
+router.get(
+  "/bilacerkva/news-today/:date",
+  KyivGetNewsByDateController.getBilacerkvaNewsByDate
+);
+router.get(
+  "/boryspil/news-today/:date",
+  KyivGetNewsByDateController.getBoryspilNewsByDate
+);
+router.get(
+  "/boyarka/news-today/:date",
+  KyivGetNewsByDateController.getBoyarkaNewsByDate
+);
+router.get(
+  "/brovary/news-today/:date",
+  KyivGetNewsByDateController.getBrovaryNewsByDate
+);
+router.get(
+  "/bucha/news-today/:date",
+  KyivGetNewsByDateController.getBuchaNewsByDate
+);
+router.get(
+  "/fastiv/news-today/:date",
+  KyivGetNewsByDateController.getFastivNewsByDate
+);
+router.get(
+  "/irpin/news-today/:date",
+  KyivGetNewsByDateController.getIrpinNewsByDate
+);
+router.get(
+  "/obukhiv/news-today/:date",
+  KyivGetNewsByDateController.getObukhivNewsByDate
+);
+router.get(
+  "/pereyaslav/news-today/:date",
+  KyivGetNewsByDateController.getPereyaslavNewsByDate
+);
+router.get(
+  "/skvyra/news-today/:date",
+  KyivGetNewsByDateController.getSkvyraNewsByDate
+);
+router.get(
+  "/slavutych/news-today/:date",
+  KyivGetNewsByDateController.getSlavutychNewsByDate
+);
+router.get(
+  "/vasylkiv/news-today/:date",
+  KyivGetNewsByDateController.getVasylkivNewsByDate
+);
+router.get(
+  "/vyshhorod/news-today/:date",
+  KyivGetNewsByDateController.getVyshhorodNewsByDate
+);
+router.get(
+  "/vyshneve/news-today/:date",
+  KyivGetNewsByDateController.getVyshneveNewsByDate
+);
+router.get(
+  "/yagotyn/news-today/:date",
+  KyivGetNewsByDateController.getYagotynNewsByDate
+);
+
+// Update News
+router.put(
+  "/kyiv/news/edit/:id",
+  checkAuth,
+  KyivUpdateNewsController.updateKyivNews
 );
 router.put(
   "/berezan/news/edit/:id",
   checkAuth,
-  NewsController.updateBerezanNews
-);
-router.post(
-  "/berezan/news/delete/:id",
-  checkAuth,
-  NewsController.deleteBerezanNews
-);
-
-router.get("/bilacerkva/news", NewsController.getAllBilacerkvaNews);
-router.get(
-  "/bilacerkva/with-national-news",
-  NewsController.getAllBilacerkvaWithNationalNews
-);
-router.get(
-  "/bilacerkva/news/:param",
-  NewsController.getBilacerkvaNewsByIdOrUrl
-);
-router.get(
-  "/bilacerkva/news/news-today/:date",
-  NewsController.getAllBilacerkvaNewsByDate
+  KyivUpdateNewsController.updateBerezanNews
 );
 router.put(
   "/bilacerkva/news/edit/:id",
   checkAuth,
-  NewsController.updateBilacerkvaNews
-);
-router.post(
-  "/bilacerkva/news/delete/:id",
-  checkAuth,
-  NewsController.deleteBilacerkvaNews
-);
-
-router.get("/boryspil/news", NewsController.getAllBoryspilNews);
-router.get(
-  "/boryspil/with-national-news",
-  NewsController.getAllBoryspilWithNationalNews
-);
-router.get("/boryspil/news/:param", NewsController.getBoryspilNewsByIdOrUrl);
-router.get(
-  "/boryspil/news/news-today/:date",
-  NewsController.getAllBoryspilNewsByDate
+  KyivUpdateNewsController.updateBilacerkvaNews
 );
 router.put(
   "/boryspil/news/edit/:id",
   checkAuth,
-  NewsController.updateBoryspilNews
-);
-router.post(
-  "/boryspil/news/delete/:id",
-  checkAuth,
-  NewsController.deleteBoryspilNews
-);
-
-router.get("/boyarka/news", NewsController.getAllBoyarkaNews);
-router.get(
-  "/boyarka/with-national-news",
-  NewsController.getAllBoyarkaWithNationalNews
-);
-router.get("/boyarka/news/:param", NewsController.getBoyarkaNewsByIdOrUrl);
-router.get(
-  "/boyarka/news/news-today/:date",
-  NewsController.getAllBoyarkaNewsByDate
+  KyivUpdateNewsController.updateBoryspilNews
 );
 router.put(
   "/boyarka/news/edit/:id",
   checkAuth,
-  NewsController.updateBoyarkaNews
-);
-router.post(
-  "/boyarka/news/delete/:id",
-  checkAuth,
-  NewsController.deleteBoyarkaNews
-);
-
-router.get("/brovary/news", NewsController.getAllBrovaryNews);
-router.get(
-  "/brovary/with-national-news",
-  NewsController.getAllBrovaryWithNationalNews
-);
-router.get("/brovary/news/:param", NewsController.getBrovaryNewsByIdOrUrl);
-router.get(
-  "/brovary/news/news-today/:date",
-  NewsController.getAllBrovaryNewsByDate
+  KyivUpdateNewsController.updateBoyarkaNews
 );
 router.put(
   "/brovary/news/edit/:id",
   checkAuth,
-  NewsController.updateBrovaryNews
+  KyivUpdateNewsController.updateBrovaryNews
 );
-router.post(
-  "/brovary/news/delete/:id",
+router.put(
+  "/bucha/news/edit/:id",
   checkAuth,
-  NewsController.deleteBrovaryNews
+  KyivUpdateNewsController.updateBuchaNews
 );
-
-router.get("/bucha/news", NewsController.getAllBuchaNews);
-router.get(
-  "/bucha/with-national-news",
-  NewsController.getAllBuchaWithNationalNews
-);
-router.get("/bucha/news/:param", NewsController.getBuchaNewsByIdOrUrl);
-router.get(
-  "/bucha/news/news-today/:date",
-  NewsController.getAllBuchaNewsByDate
-);
-router.put("/bucha/news/edit/:id", checkAuth, NewsController.updateBuchaNews);
-router.post(
-  "/bucha/news/delete/:id",
+router.put(
+  "/fastiv/news/edit/:id",
   checkAuth,
-  NewsController.deleteBuchaNews
+  KyivUpdateNewsController.updateFastivNews
 );
-
-router.get("/fastiv/news", NewsController.getAllFastivNews);
-router.get(
-  "/fastiv/with-national-news",
-  NewsController.getAllFastivWithNationalNews
-);
-router.get("/fastiv/news/:param", NewsController.getFastivNewsByIdOrUrl);
-router.get(
-  "/fastiv/news/news-today/:date",
-  NewsController.getAllFastivNewsByDate
-);
-router.put("/fastiv/news/edit/:id", checkAuth, NewsController.updateFastivNews);
-router.post(
-  "/fastiv/news/delete/:id",
+router.put(
+  "/irpin/news/edit/:id",
   checkAuth,
-  NewsController.deleteFastivNews
-);
-
-router.get("/irpin/news", NewsController.getAllIrpinNews);
-router.get(
-  "/irpin/with-national-news",
-  NewsController.getAllIrpinWithNationalNews
-);
-router.get("/irpin/news/:param", NewsController.getIrpinNewsByIdOrUrl);
-router.get(
-  "/irpin/news/news-today/:date",
-  NewsController.getAllIrpinNewsByDate
-);
-router.put("/irpin/news/edit/:id", checkAuth, NewsController.updateIrpinNews);
-router.post(
-  "/irpin/news/delete/:id",
-  checkAuth,
-  NewsController.deleteIrpinNews
-);
-
-router.get("/kyiv/news", NewsController.getAllKyivNews);
-router.get(
-  "/kyiv/with-national-news",
-  NewsController.getAllKyivWithNationalNews
-);
-router.get("/kyiv/news/:param", NewsController.getKyivNewsByIdOrUrl);
-router.get("/kyiv/news/news-today/:date", NewsController.getAllKyivNewsByDate);
-router.put("/kyiv/news/edit/:id", checkAuth, NewsController.updateKyivNews);
-router.post("/kyiv/news/delete/:id", checkAuth, NewsController.deleteKyivNews);
-
-router.get("/obukhiv/news", NewsController.getAllObukhivNews);
-router.get(
-  "/obukhiv/with-national-news",
-  NewsController.getAllObukhivWithNationalNews
-);
-router.get("/obukhiv/news/:param", NewsController.getObukhivNewsByIdOrUrl);
-router.get(
-  "/obukhiv/news/news-today/:date",
-  NewsController.getAllObukhivNewsByDate
+  KyivUpdateNewsController.updateIrpinNews
 );
 router.put(
   "/obukhiv/news/edit/:id",
   checkAuth,
-  NewsController.updateObukhivNews
-);
-router.post(
-  "/obukhiv/news/delete/:id",
-  checkAuth,
-  NewsController.deleteObukhivNews
-);
-
-router.get("/pereyaslav/news", NewsController.getAllPereyaslavNews);
-router.get(
-  "/pereyaslav/with-national-news",
-  NewsController.getAllPereyaslavWithNationalNews
-);
-router.get(
-  "/pereyaslav/news/:param",
-  NewsController.getPereyaslavNewsByIdOrUrl
-);
-router.get(
-  "/pereyaslav/news/news-today/:date",
-  NewsController.getAllPereyaslavNewsByDate
+  KyivUpdateNewsController.updateObukhivNews
 );
 router.put(
   "/pereyaslav/news/edit/:id",
   checkAuth,
-  NewsController.updatePereyaslavNews
+  KyivUpdateNewsController.updatePereyaslavNews
 );
-router.post(
-  "/pereyaslav/news/delete/:id",
+router.put(
+  "/skvyra/news/edit/:id",
   checkAuth,
-  NewsController.deletePereyaslavNews
-);
-
-router.get("/skvyra/news", NewsController.getAllSkvyraNews);
-router.get(
-  "/skvyra/with-national-news",
-  NewsController.getAllSkvyraWithNationalNews
-);
-router.get("/skvyra/news/:param", NewsController.getSkvyraNewsByIdOrUrl);
-router.get(
-  "/skvyra/news/news-today/:date",
-  NewsController.getAllSkvyraNewsByDate
-);
-router.put("/skvyra/news/edit/:id", checkAuth, NewsController.updateSkvyraNews);
-router.post(
-  "/skvyra/news/delete/:id",
-  checkAuth,
-  NewsController.deleteSkvyraNews
-);
-
-router.get("/slavutych/news", NewsController.getAllSlavutychNews);
-router.get(
-  "/slavutych/with-national-news",
-  NewsController.getAllSlavutychWithNationalNews
-);
-router.get("/slavutych/news/:param", NewsController.getSlavutychNewsByIdOrUrl);
-router.get(
-  "/slavutych/news/news-today/:date",
-  NewsController.getAllSlavutychNewsByDate
+  KyivUpdateNewsController.updateSkvyraNews
 );
 router.put(
   "/slavutych/news/edit/:id",
   checkAuth,
-  NewsController.updateSlavutychNews
-);
-router.post(
-  "/slavutych/news/delete/:id",
-  checkAuth,
-  NewsController.deleteSlavutychNews
-);
-
-router.get("/vasylkiv/news", NewsController.getAllVasylkivNews);
-router.get(
-  "/vasylkiv/with-national-news",
-  NewsController.getAllVasylkivWithNationalNews
-);
-router.get("/vasylkiv/news/:param", NewsController.getVasylkivNewsByIdOrUrl);
-router.get(
-  "/vasylkiv/news/news-today/:date",
-  NewsController.getAllVasylkivNewsByDate
+  KyivUpdateNewsController.updateSlavutychNews
 );
 router.put(
   "/vasylkiv/news/edit/:id",
   checkAuth,
-  NewsController.updateVasylkivNews
-);
-router.post(
-  "/vasylkiv/news/delete/:id",
-  checkAuth,
-  NewsController.deleteVasylkivNews
-);
-
-router.get("/vyshhorod/news", NewsController.getAllVyshhorodNews);
-router.get(
-  "/vyshhorod/with-national-news",
-  NewsController.getAllVyshhorodWithNationalNews
-);
-router.get("/vyshhorod/news/:param", NewsController.getVyshhorodNewsByIdOrUrl);
-router.get(
-  "/vyshhorod/news/news-today/:date",
-  NewsController.getAllVyshhorodNewsByDate
+  KyivUpdateNewsController.updateVasylkivNews
 );
 router.put(
   "/vyshhorod/news/edit/:id",
   checkAuth,
-  NewsController.updateVyshhorodNews
-);
-router.post(
-  "/vyshhorod/news/delete/:id",
-  checkAuth,
-  NewsController.deleteVyshhorodNews
-);
-
-router.get("/vyshneve/news", NewsController.getAllVyshneveNews);
-router.get(
-  "/vyshneve/with-national-news",
-  NewsController.getAllVyshneveWithNationalNews
-);
-router.get("/vyshneve/news/:param", NewsController.getVyshneveNewsByIdOrUrl);
-router.get(
-  "/vyshneve/news/news-today/:date",
-  NewsController.getAllVyshneveNewsByDate
+  KyivUpdateNewsController.updateVyshhorodNews
 );
 router.put(
   "/vyshneve/news/edit/:id",
   checkAuth,
-  NewsController.updateVyshneveNews
-);
-router.post(
-  "/vyshneve/news/delete/:id",
-  checkAuth,
-  NewsController.deleteVyshneveNews
-);
-
-router.get("/yagotyn/news", NewsController.getAllYagotynNews);
-router.get(
-  "/yagotyn/with-national-news",
-  NewsController.getAllYagotynWithNationalNews
-);
-router.get("/yagotyn/news/:param", NewsController.getYagotynNewsByIdOrUrl);
-router.get(
-  "/yagotyn/news/news-today/:date",
-  NewsController.getAllYagotynNewsByDate
+  KyivUpdateNewsController.updateVyshneveNews
 );
 router.put(
   "/yagotyn/news/edit/:id",
   checkAuth,
-  NewsController.updateYagotynNews
+  KyivUpdateNewsController.updateYagotynNews
+);
+
+// Delete News
+router.post(
+  "/kyiv/news/delete/:id",
+  checkAuth,
+  KyivDeleteNewsController.deleteKyivNews
+);
+router.post(
+  "/berezan/news/delete/:id",
+  checkAuth,
+  KyivDeleteNewsController.deleteBerezanNews
+);
+router.post(
+  "/bilacerkva/news/delete/:id",
+  checkAuth,
+  KyivDeleteNewsController.deleteBilacerkvaNews
+);
+router.post(
+  "/boryspil/news/delete/:id",
+  checkAuth,
+  KyivDeleteNewsController.deleteBoryspilNews
+);
+router.post(
+  "/boyarka/news/delete/:id",
+  checkAuth,
+  KyivDeleteNewsController.deleteBoyarkaNews
+);
+router.post(
+  "/brovary/news/delete/:id",
+  checkAuth,
+  KyivDeleteNewsController.deleteBrovaryNews
+);
+router.post(
+  "/bucha/news/delete/:id",
+  checkAuth,
+  KyivDeleteNewsController.deleteBuchaNews
+);
+router.post(
+  "/fastiv/news/delete/:id",
+  checkAuth,
+  KyivDeleteNewsController.deleteFastivNews
+);
+router.post(
+  "/irpin/news/delete/:id",
+  checkAuth,
+  KyivDeleteNewsController.deleteIrpinNews
+);
+router.post(
+  "/obukhiv/news/delete/:id",
+  checkAuth,
+  KyivDeleteNewsController.deleteObukhivNews
+);
+router.post(
+  "/pereyaslav/news/delete/:id",
+  checkAuth,
+  KyivDeleteNewsController.deletePereyaslavNews
+);
+router.post(
+  "/skvyra/news/delete/:id",
+  checkAuth,
+  KyivDeleteNewsController.deleteSkvyraNews
+);
+router.post(
+  "/slavutych/news/delete/:id",
+  checkAuth,
+  KyivDeleteNewsController.deleteSlavutychNews
+);
+router.post(
+  "/vasylkiv/news/delete/:id",
+  checkAuth,
+  KyivDeleteNewsController.deleteVasylkivNews
+);
+router.post(
+  "/vyshhorod/news/delete/:id",
+  checkAuth,
+  KyivDeleteNewsController.deleteVyshhorodNews
+);
+router.post(
+  "/vyshneve/news/delete/:id",
+  checkAuth,
+  KyivDeleteNewsController.deleteVyshneveNews
 );
 router.post(
   "/yagotyn/news/delete/:id",
   checkAuth,
-  NewsController.deleteYagotynNews
+  KyivDeleteNewsController.deleteYagotynNews
 );
+
+// Search News
+router.get("/kyiv/search", KyivSearchNewsController.searchKyivNews);
+router.get("/berezan/search", KyivSearchNewsController.searchBerezanNews);
+router.get("/bilacerkva/search", KyivSearchNewsController.searchBilacerkvaNews);
+router.get("/boryspil/search", KyivSearchNewsController.searchBoryspilNews);
+router.get("/boyarka/search", KyivSearchNewsController.searchBoyarkaNews);
+router.get("/brovary/search", KyivSearchNewsController.searchBrovaryNews);
+router.get("/bucha/search", KyivSearchNewsController.searchBuchaNews);
+router.get("/fastiv/search", KyivSearchNewsController.searchFastivNews);
+router.get("/irpin/search", KyivSearchNewsController.searchIrpinNews);
+router.get("/obukhiv/search", KyivSearchNewsController.searchObukhivNews);
+router.get("/pereyaslav/search", KyivSearchNewsController.searchPereyaslavNews);
+router.get("/skvyra/search", KyivSearchNewsController.searchSkvyraNews);
+router.get("/slavutych/search", KyivSearchNewsController.searchSlavutychNews);
+router.get("/vasylkiv/search", KyivSearchNewsController.searchVasylkivNews);
+router.get("/vyshhorod/search", KyivSearchNewsController.searchVyshhorodNews);
+router.get("/vyshneve/search", KyivSearchNewsController.searchVyshneveNews);
+router.get("/yagotyn/search", KyivSearchNewsController.searchYagotynNews);
 
 export default router;

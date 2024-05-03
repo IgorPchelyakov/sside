@@ -4,23 +4,6 @@ import SearchController from "../controllers/searchController.js";
 const router = Router();
 
 router.get("/search", SearchController.searchNationalNews);
-// Kyiv Region
-router.get("/berezan/search", SearchController.searchBerezanNews);
-router.get("/bilacerkva/search", SearchController.searchBilacerkvaNews);
-router.get("/boryspil/search", SearchController.searchBoryspilNews);
-router.get("/boyarka/search", SearchController.searchBoyarkaNews);
-router.get("/brovary/search", SearchController.searchBrovaryNews);
-router.get("/bucha/search", SearchController.searchBuchaNews);
-router.get("/fastiv/search", SearchController.searchFastivNews);
-router.get("/irpin/search", SearchController.searchIrpinNews);
-router.get("/kyiv/search", SearchController.searchKyivNews);
-router.get("/obukhiv/search", SearchController.searchObukhivNews);
-router.get("/skvyra/search", SearchController.searchSkvyraNews);
-router.get("/slavutych/search", SearchController.searchSlavutychNews);
-router.get("/vasylkiv/search", SearchController.searchVasylkivNews);
-router.get("/vyshhorod/search", SearchController.searchVyshhorodNews);
-router.get("/vyshneve/search", SearchController.searchVyshneveNews);
-router.get("/yagotyn/search", SearchController.searchYagotynNews);
 // Dnipro
 router.get("/dnipro/search", SearchController.searchDniproNews);
 router.get("/kamianske/search", SearchController.searchKamianskeNews);
