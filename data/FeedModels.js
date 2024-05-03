@@ -1,17 +1,33 @@
-import Dnipro from "../models/feeds/regionDnipro/dnipro.js";
-import Kamianske from "../models/feeds/regionDnipro/kamianske.js";
-import KryvyiRih from "../models/feeds/regionDnipro/kryvyi-rih.js";
-import Marganets from "../models/feeds/regionDnipro/marganets.js";
-import Nikopol from "../models/feeds/regionDnipro/nikopol.js";
-import Novomoskovsk from "../models/feeds/regionDnipro/novomoskovsk.js";
-import Pavlograd from "../models/feeds/regionDnipro/pavlograd.js";
-import Pershotravensk from "../models/feeds/regionDnipro/pershotravensk.js";
-import Pokrov from "../models/feeds/regionDnipro/pokrov.js";
-import Pyatihatky from "../models/feeds/regionDnipro/pyatihatky.js";
-import Sinelnikovo from "../models/feeds/regionDnipro/sinelnikovo.js";
-import Ternivka from "../models/feeds/regionDnipro/ternivka.js";
-import Vilnohorsk from "../models/feeds/regionDnipro/vilnohorsk.js";
-import ZhovtiVody from "../models/feeds/regionDnipro/zhovti-vody.js";
+// import Dnipro from "../models/feeds/regionDnipro/dnipro.js";
+// import Kamianske from "../models/feeds/regionDnipro/kamianske.js";
+// import KryvyiRih from "../models/feeds/regionDnipro/kryvyi-rih.js";
+// import Marganets from "../models/feeds/regionDnipro/marganets.js";
+// import Nikopol from "../models/feeds/regionDnipro/nikopol.js";
+// import Novomoskovsk from "../models/feeds/regionDnipro/novomoskovsk.js";
+// import Pavlograd from "../models/feeds/regionDnipro/pavlograd.js";
+// import Pershotravensk from "../models/feeds/regionDnipro/pershotravensk.js";
+// import Pokrov from "../models/feeds/regionDnipro/pokrov.js";
+// import Pyatihatky from "../models/feeds/regionDnipro/pyatihatky.js";
+// import Sinelnikovo from "../models/feeds/regionDnipro/sinelnikovo.js";
+// import Ternivka from "../models/feeds/regionDnipro/ternivka.js";
+// import Vilnohorsk from "../models/feeds/regionDnipro/vilnohorsk.js";
+// import ZhovtiVody from "../models/feeds/regionDnipro/zhovti-vody.js";
+import {
+  Dnipro,
+  Kamianske,
+  KryvyiRih,
+  Marganets,
+  Nikopol,
+  Novomoskovsk,
+  Pavlograd,
+  Pershotravensk,
+  Pokrov,
+  Pyatihatky,
+  Sinelnikovo,
+  Ternivka,
+  Vilnohorsk,
+  ZhovtiVody,
+} from "../models/feeds/regionDnipro/dniproCities.js";
 import {
   Berezan,
   Bilacerkva,

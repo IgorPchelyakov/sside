@@ -5,6 +5,6 @@ export const Chornomorsk = NewsModel("chornomorsks");
 export const Izmail = NewsModel("izmails");
 export const Kiliya = NewsModel("kiliyas");
 export const Odesa = NewsModel("odesas");
-export const Podilsk = NewsModel("Podilsk");
+export const Podilsk = NewsModel("podilsks");
 export const Teplodar = NewsModel("teplodars");
 export const Youzhne = NewsModel("youzhnes");
