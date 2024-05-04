@@ -1,6 +1,7 @@
 import { Op, Sequelize } from "sequelize";
 import transliteration from "transliteration";
-import models from "../data/FeedModels.js";
+// import models from "../data/FeedModels.js";
+import { models } from "../data/models.js";
 import NationalNews from "../models/nationalNews.js";
 import Topic from "../models/topic.js";
 import User from "../models/user.js";
