@@ -11,28 +11,31 @@ import { checkAuth } from "../../middleware/checkAuth.js";
 const router = Router();
 // GetAllNews
 router.get("/dnipro/news", DniproGetAllNewsController.getAllDniproNews);
-router.get("kamianske/news", DniproGetAllNewsController.getAllKamianskeNews);
-router.get("kryvyi-rih/news", DniproGetAllNewsController.getAllKryvyiRihNews);
-router.get("marganets/news", DniproGetAllNewsController.getAllMarganetsNews);
-router.get("nikopol/news", DniproGetAllNewsController.getAllNikopolNews);
+router.get("/kamianske/news", DniproGetAllNewsController.getAllKamianskeNews);
+router.get("/kryvyi-rih/news", DniproGetAllNewsController.getAllKryvyiRihNews);
+router.get("/marganets/news", DniproGetAllNewsController.getAllMarganetsNews);
+router.get("/nikopol/news", DniproGetAllNewsController.getAllNikopolNews);
 router.get(
-  "novomoskovsk/news",
+  "/novomoskovsk/news",
   DniproGetAllNewsController.getAllNovomoskovskNews
 );
-router.get("pavlograd/news", DniproGetAllNewsController.getAllPavlogradNews);
+router.get("/pavlograd/news", DniproGetAllNewsController.getAllPavlogradNews);
 router.get(
-  "pershotravensk/news",
+  "/pershotravensk/news",
   DniproGetAllNewsController.getAllPershotravenskNews
 );
-router.get("pokrov/news", DniproGetAllNewsController.getAllPokrovNews);
-router.get("pyatihatky/news", DniproGetAllNewsController.getAllPyatihatkyNews);
+router.get("/pokrov/news", DniproGetAllNewsController.getAllPokrovNews);
+router.get("/pyatihatky/news", DniproGetAllNewsController.getAllPyatihatkyNews);
 router.get(
-  "sinelnikovo/news",
+  "/sinelnikovo/news",
   DniproGetAllNewsController.getAllSinelnikovoNews
 );
-router.get("ternivka/news", DniproGetAllNewsController.getAllTernivkaNews);
-router.get("vilnohorsk/news", DniproGetAllNewsController.getAllVilnohorskNews);
-router.get("zhovti-vody/news", DniproGetAllNewsController.getAllZhovtiVodyNews);
+router.get("/ternivka/news", DniproGetAllNewsController.getAllTernivkaNews);
+router.get("/vilnohorsk/news", DniproGetAllNewsController.getAllVilnohorskNews);
+router.get(
+  "/zhovti-vody/news",
+  DniproGetAllNewsController.getAllZhovtiVodyNews
+);
 
 // Get All News With NN
 router.get(

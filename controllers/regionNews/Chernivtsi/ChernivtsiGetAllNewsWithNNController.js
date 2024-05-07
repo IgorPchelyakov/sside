@@ -2,7 +2,7 @@ import { Chernivtsi } from "../../../models/feeds/regionChernivtsi/chernivtsiCit
 import { getAllNewsByCityWithNN } from "../../../utils/news/getAllNewsByCityWithNN.js";
 
 const RegionChernivtsiMethods = {
-  getChernivtsiAllNewsWithNN: Chernivtsi,
+  getAllChernivtsiNewsWithNN: Chernivtsi,
 };
 
 const ChernivtsiGetAllNewsWithNNController = {};
