@@ -777,6 +777,7 @@ __metadata:
     dotenv: ^16.0.3
     express: ^4.18.2
     express-fileupload: ^1.4.0
+    express-list-endpoints: ^7.1.1
     jsonwebtoken: ^9.0.0
     moment: ^2.29.4
     morgan: ^1.10.0
@@ -1026,6 +1027,13 @@ __metadata:
   dependencies:
     busboy: ^1.6.0
   checksum: 4dad1dab1279eab72412857c3bb6b364f86ae512ac760cb4ae140e7f5793daefd2656c2a7cc60033a476d7267ab9d89ac85b2106ce9d5697ec5d3ba9c315ac6f
+  languageName: node
+  linkType: hard
+
+"express-list-endpoints@npm:^7.1.1":
+  version: 7.1.1
+  resolution: "express-list-endpoints@npm:7.1.1"
+  checksum: 343f4abbed023d620d2356d175571199749acad4f978fcfc606655597d1a1d4bb43c7484ae11820f2be70dbd4a4f383e567a4a25945902b12c95480c30baa2a6
   languageName: node
   linkType: hard
 

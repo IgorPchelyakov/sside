@@ -21,6 +21,7 @@ const sequelize = new Sequelize(
       },
     },
     timezone: "+02:00",
+    logging: false,
   }
 );
 

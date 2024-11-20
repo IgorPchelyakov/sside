@@ -1,8 +1,8 @@
-import { Router } from 'express'
-import CountersController from '../controllers/countersController.js'
+import { Router } from "express";
+import CountersController from "../controllers/countersController.js";
 
-const router = Router()
+const router = Router();
 
-router.get('/count/:params', CountersController.countAllNews)
+router.get("/count/:params", CountersController.countAllNews);
 
-export default router
+export default router;
