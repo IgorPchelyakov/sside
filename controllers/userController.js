@@ -164,7 +164,7 @@ const UserController = {
         });
       }
       avatar.mv(`./uploads/users/${nextUserId}/avatars/${avatar.name}`);
-      const baseUrl = `http://localhost:4444/api`;
+      const baseUrl = `http://sside.daycom.com.ua/api`;
       const avatarName =
         baseUrl + `/uploads/users/${nextUserId}/avatars/${avatar.name}`;
 
@@ -232,7 +232,7 @@ const UserController = {
       // }
       // avatar.mv(`./uploads/users/${id}/avatars/${avatar.name}`)
       avatar.mv(`${avatarFolderPath}/${avatar.name}`);
-      const baseUrl = `http://localhost:4444/api`;
+      const baseUrl = `http://sside.daycom.com.ua/api`;
       // const avatarName = baseUrl + `/uploads/users/${id}/avatars/${avatar.name}`
       const avatarName = `${baseUrl}/uploads/users/${id}/avatars/${avatar.name}`;
 

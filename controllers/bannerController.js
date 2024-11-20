@@ -43,23 +43,30 @@ const BannerController = {
         descriptions,
         advertiserLinks,
       } = req.body;
+      console.log(req.body);
       const feedAsString = feed.join(", ");
       const jsonTypesAsString = JSON.stringify(blockTypes);
-      const headlinesAsString = headlines.map(
-        (headlines) => headlines.headline
-      );
-      const jsonHeadlines = JSON.stringify(headlinesAsString);
-      const descriptionsAsString = descriptions.map(
-        (descriptions) => descriptions.description
-      );
-      const jsonDescriptions = JSON.stringify(descriptionsAsString);
-      const advertiserLinksAsString = advertiserLinks.map(
-        (advertiserLinks) => advertiserLinks.advertiserLink
-      );
-      const jsonAdvertiserLinks = JSON.stringify(advertiserLinksAsString);
+      const jsonHeadlines = JSON.stringify(headlines);
+      const jsonDescriptions = JSON.stringify(descriptions);
+      const jsonAdvertiserLinks = JSON.stringify(advertiserLinks);
+      const jsonImageUrls = JSON.stringify(images);
 
-      const imageUrls = images.map((image) => image.url);
-      const jsonImageUrls = JSON.stringify(imageUrls);
+      // const imageUrls = images.map((image) => image.url);
+      // const headlinesAsString = headlines.map(
+      //   (headlines) => headlines.headline
+      // );
+      // const jsonHeadlines = JSON.stringify(headlinesAsString);
+      // const descriptionsAsString = descriptions.map(
+      //   (descriptions) => descriptions.description
+      // );
+      // const jsonDescriptions = JSON.stringify(descriptionsAsString);
+      // const advertiserLinksAsString = advertiserLinks.map(
+      //   (advertiserLinks) => advertiserLinks.advertiserLink
+      // );
+      // const jsonAdvertiserLinks = JSON.stringify(advertiserLinksAsString);
+
+      // const imageUrls = images.map((image) => image.url);
+      // const jsonImageUrls = JSON.stringify(imageUrls);
 
       const banner = await Banner.create({
         name,
